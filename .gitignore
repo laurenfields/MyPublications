@@ -1,0 +1,15 @@
+# Scratch
+.tmp/
+*.log
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Note: data/*.json and index.html are generated but ARE committed on purpose -
+# GitHub Pages serves them directly, with no build step.

@@ -1,0 +1,80 @@
+{
+    "name":  "Lauren Fields",
+    "orcid":  "0000-0001-8155-642X",
+    "affiliation":  "University of Wisconsin–Madison",
+    "tagline":  "Mass spectrometry, neuropeptidomics, and structural proteomics",
+    "generated_utc":  "2026-07-22T17:01:25Z",
+    "current_year":  2026,
+    "total_papers":  23,
+    "total_citations":  259,
+    "h_index":  10,
+    "i10_index":  10,
+    "first_author":  11,
+    "preprints":  4,
+    "open_access":  22,
+    "excluded_count":  7,
+    "citation_growth":  [
+                            {
+                                "year":  2022,
+                                "received":  3,
+                                "cumulative":  3
+                            },
+                            {
+                                "year":  2023,
+                                "received":  10,
+                                "cumulative":  13
+                            },
+                            {
+                                "year":  2024,
+                                "received":  66,
+                                "cumulative":  79
+                            },
+                            {
+                                "year":  2025,
+                                "received":  108,
+                                "cumulative":  187
+                            },
+                            {
+                                "year":  2026,
+                                "received":  72,
+                                "cumulative":  259
+                            }
+                        ],
+    "papers_by_year":  [
+                           {
+                               "year":  2019,
+                               "papers":  1,
+                               "citations":  3
+                           },
+                           {
+                               "year":  2020,
+                               "papers":  1,
+                               "citations":  1
+                           },
+                           {
+                               "year":  2022,
+                               "papers":  1,
+                               "citations":  8
+                           },
+                           {
+                               "year":  2023,
+                               "papers":  6,
+                               "citations":  167
+                           },
+                           {
+                               "year":  2024,
+                               "papers":  6,
+                               "citations":  61
+                           },
+                           {
+                               "year":  2025,
+                               "papers":  5,
+                               "citations":  19
+                           },
+                           {
+                               "year":  2026,
+                               "papers":  3,
+                               "citations":  0
+                           }
+                       ]
+}

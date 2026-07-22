@@ -1,0 +1,1313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lauren Fields - Publications</title>
+<meta name="description" content="23 publications and 259 citations by Lauren Fields, University of Wisconsin–Madison.">
+<style>
+  /* Palette roles. Dark values are stepped for the dark surface, not flipped. */
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --series: #2a78d6;
+    --series-soft: rgba(42, 120, 214, 0.14);
+    --border: rgba(11, 11, 11, 0.10);
+    --success: #006300;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --axis: #383835;
+      --series: #3987e5;
+      --series-soft: rgba(57, 135, 229, 0.20);
+      --border: rgba(255, 255, 255, 0.10);
+      --success: #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --series: #3987e5;
+    --series-soft: rgba(57, 135, 229, 0.20);
+    --border: rgba(255, 255, 255, 0.10);
+    --success: #0ca30c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 72px; }
+  a { color: var(--series); }
+  a:hover { text-decoration: none; }
+
+  /* ---- Header ---- */
+  header { margin-bottom: 40px; }
+  h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .affil { color: var(--text-secondary); margin: 0 0 4px; font-size: 17px; }
+  .tagline { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
+  .orcid { font-size: 14px; color: var(--text-secondary); text-decoration: none;
+           display: inline-flex; align-items: center; gap: 6px; }
+  .orcid .dot { width: 8px; height: 8px; border-radius: 50%; background: #a6ce39; flex: none; }
+
+  /* ---- KPI row ---- */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 1px; background: var(--border); border: 1px solid var(--border);
+          border-radius: 10px; overflow: hidden; margin-bottom: 44px; }
+  .kpi { background: var(--surface-1); padding: 18px 20px; }
+  .kpi .v { font-size: 30px; font-weight: 650; letter-spacing: -0.02em; display: block; }
+  .kpi .l { font-size: 13px; color: var(--muted); }
+  .kpi.hero .v { font-size: 44px; color: var(--series); }
+
+  /* ---- Charts ---- */
+  .charts { display: grid; grid-template-columns: 1fr; gap: 28px; margin-bottom: 48px; }
+  @media (min-width: 760px) { .charts { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--surface-1); border: 1px solid var(--border);
+          border-radius: 10px; padding: 20px; }
+  .card h2 { font-size: 15px; margin: 0 0 2px; font-weight: 600; }
+  .card .sub { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
+  .chart { width: 100%; height: auto; display: block; overflow: visible; touch-action: none; }
+  .chart text { font-family: inherit; }
+  .tick { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+  .gridline { stroke: var(--grid); stroke-width: 1; }
+  .baseline { stroke: var(--axis); stroke-width: 1; }
+  .dlabel { font-size: 11px; fill: var(--text-secondary); font-variant-numeric: tabular-nums; font-weight: 600; }
+
+  details.table-view { margin-top: 14px; }
+  details.table-view summary { font-size: 12px; color: var(--muted); cursor: pointer; }
+  details.table-view table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+  details.table-view th, details.table-view td {
+    text-align: right; padding: 4px 6px; border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums; }
+  details.table-view th:first-child, details.table-view td:first-child { text-align: left; }
+  details.table-view th { color: var(--muted); font-weight: 600; }
+
+  .tip { position: fixed; pointer-events: none; z-index: 20; background: var(--surface-1);
+         border: 1px solid var(--border); border-radius: 7px; padding: 7px 10px;
+         font-size: 12px; color: var(--text-primary); box-shadow: 0 3px 14px rgba(0,0,0,.14);
+         opacity: 0; transition: opacity .1s; white-space: nowrap; }
+  .tip.on { opacity: 1; }
+  .tip b { font-variant-numeric: tabular-nums; }
+
+  /* ---- Publication list ---- */
+  h2.section { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .section-sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+  .yr { font-size: 13px; font-weight: 650; color: var(--muted); letter-spacing: .06em;
+        margin: 30px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .pub { padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; gap: 18px; }
+  .pub:last-child { border-bottom: none; }
+  .pub .cite { flex: none; width: 52px; text-align: right; padding-top: 2px; }
+  .pub .cite .n { font-size: 18px; font-weight: 650; font-variant-numeric: tabular-nums;
+                  display: block; line-height: 1.2; }
+  .pub .cite .u { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .pub .cite.zero .n { color: var(--muted); font-weight: 500; }
+  .pub .body { flex: 1; min-width: 0; }
+  .pub .t { font-size: 15.5px; font-weight: 560; margin: 0 0 5px; line-height: 1.4; }
+  .pub .t a { color: inherit; text-decoration: none; }
+  .pub .t a:hover { color: var(--series); }
+  .pub .a { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; }
+  .pub .a .me { font-weight: 680; color: var(--text-primary); }
+  .pub .v { font-size: 13px; color: var(--muted); font-style: italic; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 650; text-transform: uppercase;
+           letter-spacing: .05em; padding: 2px 6px; border-radius: 4px; vertical-align: 1.5px;
+           margin-left: 7px; font-style: normal; }
+  .badge.pre { background: var(--series-soft); color: var(--series); }
+  .badge.oa { background: transparent; color: var(--success); border: 1px solid currentColor; }
+  .badge.first { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
+  footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--border);
+           font-size: 13px; color: var(--muted); }
+  footer p { margin: 0 0 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1 id="name"></h1>
+    <p class="affil" id="affil"></p>
+    <p class="tagline" id="tagline"></p>
+    <a class="orcid" id="orcidLink" href="#" target="_blank" rel="noopener">
+      <span class="dot"></span><span id="orcidText"></span>
+    </a>
+  </header>
+
+  <section class="kpis" id="kpis" aria-label="Summary metrics"></section>
+
+  <section class="charts">
+    <div class="card">
+      <h2>Citations over time</h2>
+      <p class="sub" id="growthSub"></p>
+      <svg class="chart" id="growthChart" role="img" aria-labelledby="growthDesc">
+        <desc id="growthDesc"></desc>
+      </svg>
+      <details class="table-view">
+        <summary>Show data table</summary>
+        <table id="growthTable"></table>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>Publications per year</h2>
+      <p class="sub" id="pubsSub"></p>
+      <svg class="chart" id="pubsChart" role="img" aria-labelledby="pubsDesc">
+        <desc id="pubsDesc"></desc>
+      </svg>
+      <details class="table-view">
+        <summary>Show data table</summary>
+        <table id="pubsTable"></table>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section">Publications</h2>
+    <p class="section-sub" id="listSub"></p>
+    <div id="pubList"></div>
+  </section>
+
+  <footer id="footer"></footer>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script id="pubdata" type="application/json">[
+    {
+        "title":  "Bridging genomes and peptidomes: hybrid sequencing reveals conserved bioactive peptides in crustaceans",
+        "year":  2026,
+        "date":  "2026-05-07",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.64898/2026.05.04.721987",
+        "url":  "https://doi.org/10.64898/2026.05.04.721987",
+        "authors":  [
+                        "Lauren Fields",
+                        "Jiangrong Qin",
+                        "Angel E. Ibarra",
+                        "Kendra G. Selby",
+                        "Tong Gao",
+                        "Tina C. Dang",
+                        "Haiyan Lu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  8,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W7160499998"
+    },
+    {
+        "title":  "Global Profiling of Post-Translationally Modified Crustacean Neuropeptidome Trends Affiliated with Feeding Activity",
+        "year":  2026,
+        "date":  "2026-03-18",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.6c00017",
+        "url":  "https://doi.org/10.1021/jasms.6c00017",
+        "authors":  [
+                        "Lauren Fields",
+                        "Kendra G. Selby",
+                        "Meghan M. Hayes",
+                        "Paul Corsetti",
+                        "Tong Gao",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W7138918752"
+    },
+    {
+        "title":  "Neuropeptide Diversity Encoded in Newly Sequenced Crustacean Genomes Reveals Signaling Roles during Feeding",
+        "year":  2026,
+        "date":  "2026-06-11",
+        "venue":  "ACS Chemical Neuroscience",
+        "doi":  "https://doi.org/10.1021/acschemneuro.6c00123",
+        "url":  "https://doi.org/10.1021/acschemneuro.6c00123",
+        "authors":  [
+                        "Lauren Fields",
+                        "Vu Ngoc Huong Tran",
+                        "Thao Duong",
+                        "Tina C. Dang",
+                        "Kendra G. Selby",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W7164369298"
+    },
+    {
+        "title":  "Decoding Neuropeptide Complexity: Advancing Neurobiological Insights from Invertebrates to Vertebrates through Evolutionary Perspectives",
+        "year":  2025,
+        "date":  "2025-04-22",
+        "venue":  "ACS Chemical Neuroscience",
+        "doi":  "https://doi.org/10.1021/acschemneuro.5c00053",
+        "url":  "https://doi.org/10.1021/acschemneuro.5c00053",
+        "authors":  [
+                        "Lauren Fields",
+                        "Tina C. Dang",
+                        "Vu Ngoc Huong Tran",
+                        "Angel Erbey Ibarra",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "first",
+        "citations":  13,
+        "by_year":  [
+                        {
+                            "year":  2025,
+                            "count":  5
+                        },
+                        {
+                            "year":  2026,
+                            "count":  8
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4409668465"
+    },
+    {
+        "title":  "cNPDB: A comprehensive empirical crustacean neuropeptide database",
+        "year":  2025,
+        "date":  "2025-08-01",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.1101/2025.07.29.667494",
+        "url":  "https://doi.org/10.1101/2025.07.29.667494",
+        "authors":  [
+                        "Vu Ngoc Huong Tran",
+                        "Thao Duong",
+                        "Lauren Fields",
+                        "Kosta Tourlouskis",
+                        "Margot Beaver",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "middle",
+        "citations":  4,
+        "by_year":  [
+                        {
+                            "year":  2026,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W4412835683"
+    },
+    {
+        "title":  "Unlocking the Neuropeptidome using a Novel Endogenous Peptidomics Framework",
+        "year":  2025,
+        "date":  "2025-06-15",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.1101/2025.06.12.659356",
+        "url":  "https://doi.org/10.1101/2025.06.12.659356",
+        "authors":  [
+                        "Lauren Fields",
+                        "Wenxin Wu",
+                        "Tina C. Dang",
+                        "Angel Erbey Ibarra",
+                        "Mitchell Gray",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  2,
+        "by_year":  [
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W4411325590"
+    },
+    {
+        "title":  "MSIght: A Modular Platform for Improved Confidence in Global, Untargeted Mass Spectrometry Imaging Annotation",
+        "year":  2025,
+        "date":  "2025-04-08",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.4c01140",
+        "url":  "https://doi.org/10.1021/acs.jproteome.4c01140",
+        "authors":  [
+                        "Lauren Fields",
+                        "Hannah N. Miles",
+                        "Alexis Adrián",
+                        "Elliot Patrenets",
+                        "William A. Ricke",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4409244905"
+    },
+    {
+        "title":  "EndoGenius: Enabling comprehensive identification and quantitation of endogenous peptides",
+        "year":  2025,
+        "date":  "2025-06-13",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.1101/2025.06.12.659347",
+        "url":  "https://doi.org/10.1101/2025.06.12.659347",
+        "authors":  [
+                        "Lauren Fields",
+                        "Tina C. Dang",
+                        "Mitchell Gray",
+                        "Satirtha Saha Protya",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W4411265711"
+    },
+    {
+        "title":  "Mass Spectrometry Structural Proteomics Enabled by Limited Proteolysis and Cross‐Linking",
+        "year":  2024,
+        "date":  "2024-09-19",
+        "venue":  "Mass Spectrometry Reviews",
+        "doi":  "https://doi.org/10.1002/mas.21908",
+        "url":  "https://doi.org/10.1002/mas.21908",
+        "authors":  [
+                        "Haiyan Lu",
+                        "Zexin Zhu",
+                        "Lauren Fields",
+                        "Hua Zhang",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "middle",
+        "citations":  21,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  2
+                        },
+                        {
+                            "year":  2025,
+                            "count":  12
+                        },
+                        {
+                            "year":  2026,
+                            "count":  7
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4402693124"
+    },
+    {
+        "title":  "A crustacean neuropeptide spectral library for data‐independent acquisition (DIA) mass spectrometry applications",
+        "year":  2024,
+        "date":  "2024-01-03",
+        "venue":  "PROTEOMICS",
+        "doi":  "https://doi.org/10.1002/pmic.202300285",
+        "url":  "https://doi.org/10.1002/pmic.202300285",
+        "authors":  [
+                        "Lauren Fields",
+                        "M Ma",
+                        "Kellen DeLaney",
+                        "Ashley Phetsanthad",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "first",
+        "citations":  12,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  2
+                        },
+                        {
+                            "year":  2025,
+                            "count":  6
+                        },
+                        {
+                            "year":  2026,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4390561397"
+    },
+    {
+        "title":  "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
+        "year":  2024,
+        "date":  "2024-03-01",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.3c00758",
+        "url":  "https://doi.org/10.1021/acs.jproteome.3c00758",
+        "authors":  [
+                        "Lauren Fields",
+                        "Nhu Q. Vu",
+                        "Tina C. Dang",
+                        "Hsu-Ching Yen",
+                        "M Ma",
+                        "Wenxin Wu",
+                        "Mitchell Gray",
+                        "Lingjun Li"
+                    ],
+        "author_count":  8,
+        "position":  "first",
+        "citations":  12,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  3
+                        },
+                        {
+                            "year":  2025,
+                            "count":  7
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4392359170"
+    },
+    {
+        "title":  "MotifQuest: An Automated Pipeline for Motif Database Creation to Improve Peptidomics Database Searching Programs",
+        "year":  2024,
+        "date":  "2024-07-26",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.4c00192",
+        "url":  "https://doi.org/10.1021/jasms.4c00192",
+        "authors":  [
+                        "Tina C. Dang",
+                        "Lauren Fields",
+                        "Lingjun Li"
+                    ],
+        "author_count":  3,
+        "position":  "middle",
+        "citations":  7,
+        "by_year":  [
+                        {
+                            "year":  2025,
+                            "count":  4
+                        },
+                        {
+                            "year":  2026,
+                            "count":  3
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4401026903"
+    },
+    {
+        "title":  "Mass Spectrometry-Based Precise Identification of Citrullinated Histones via Limited Digestion and Biotin Derivative Tag Enrichment",
+        "year":  2024,
+        "date":  "2024-01-29",
+        "venue":  "Analytical Chemistry",
+        "doi":  "https://doi.org/10.1021/acs.analchem.3c02646",
+        "url":  "https://doi.org/10.1021/acs.analchem.3c02646",
+        "authors":  [
+                        "Bin Wang",
+                        "Zihui Li",
+                        "Yatao Shi",
+                        "Zexin Zhu",
+                        "Lauren Fields",
+                        "Miriam A. Shelef",
+                        "Lingjun Li"
+                    ],
+        "author_count":  7,
+        "position":  "middle",
+        "citations":  6,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  2
+                        },
+                        {
+                            "year":  2025,
+                            "count":  1
+                        },
+                        {
+                            "year":  2026,
+                            "count":  3
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4391304276"
+    },
+    {
+        "title":  "An Updated Guide to the Identification, Quantitation, and Imaging of the Crustacean Neuropeptidome",
+        "year":  2024,
+        "date":  "2024-01-01",
+        "venue":  "Methods in molecular biology",
+        "doi":  "https://doi.org/10.1007/978-1-0716-3646-6_14",
+        "url":  "https://doi.org/10.1007/978-1-0716-3646-6_14",
+        "authors":  [
+                        "Wenxin Wu",
+                        "Lauren Fields",
+                        "Kellen DeLaney",
+                        "Amanda R. Buchberger",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "middle",
+        "citations":  3,
+        "by_year":  [
+                        {
+                            "year":  2025,
+                            "count":  1
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "book-chapter",
+        "openalex_id":  "https://openalex.org/W4393285660"
+    },
+    {
+        "title":  "Single-cell lipidomics enabled by dual-polarity ionization and ion mobility-mass spectrometry imaging",
+        "year":  2023,
+        "date":  "2023-08-25",
+        "venue":  "Nature Communications",
+        "doi":  "https://doi.org/10.1038/s41467-023-40512-6",
+        "url":  "https://doi.org/10.1038/s41467-023-40512-6",
+        "authors":  [
+                        "Hua Zhang",
+                        "Yuan Liu",
+                        "Lauren Fields",
+                        "Xudong Shi",
+                        "Penghsuan Huang",
+                        "Haiyan Lu",
+                        "Andrew J. Schneider",
+                        "Xindi Tang",
+                        "Luigi Puglielli",
+                        "Nathan V. Welham",
+                        "Lingjun Li"
+                    ],
+        "author_count":  11,
+        "position":  "middle",
+        "citations":  99,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  5
+                        },
+                        {
+                            "year":  2024,
+                            "count":  23
+                        },
+                        {
+                            "year":  2025,
+                            "count":  51
+                        },
+                        {
+                            "year":  2026,
+                            "count":  20
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4386163297"
+    },
+    {
+        "title":  "DiLeu Isobaric Labeling Coupled with Limited Proteolysis Mass Spectrometry for High-Throughput Profiling of Protein Structural Changes in Alzheimer’s Disease",
+        "year":  2023,
+        "date":  "2023-06-12",
+        "venue":  "Analytical Chemistry",
+        "doi":  "https://doi.org/10.1021/acs.analchem.2c05731",
+        "url":  "https://doi.org/10.1021/acs.analchem.2c05731",
+        "authors":  [
+                        "Haiyan Lu",
+                        "Bin Wang",
+                        "Yuan Liu",
+                        "Danqing Wang",
+                        "Lauren Fields",
+                        "Hua Zhang",
+                        "Miyang Li",
+                        "Xudong Shi",
+                        "Henrik Zetterberg",
+                        "Lingjun Li"
+                    ],
+        "author_count":  10,
+        "position":  "middle",
+        "citations":  19,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  8
+                        },
+                        {
+                            "year":  2025,
+                            "count":  5
+                        },
+                        {
+                            "year":  2026,
+                            "count":  6
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4380291971"
+    },
+    {
+        "title":  "Definitive Screening Designs to Optimize Library-Free DIA-MS Identification and Quantification of Neuropeptides",
+        "year":  2023,
+        "date":  "2023-03-15",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.3c00088",
+        "url":  "https://doi.org/10.1021/acs.jproteome.3c00088",
+        "authors":  [
+                        "Ashley Phetsanthad",
+                        "Austin V. Carr",
+                        "Lauren Fields",
+                        "Lingjun Li"
+                    ],
+        "author_count":  4,
+        "position":  "middle",
+        "citations":  15,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  1
+                        },
+                        {
+                            "year":  2024,
+                            "count":  7
+                        },
+                        {
+                            "year":  2025,
+                            "count":  5
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4324326953"
+    },
+    {
+        "title":  "Structural Proteomic Profiling of Cerebrospinal Fluids to Reveal Novel Conformational Biomarkers for Alzheimer’s Disease",
+        "year":  2023,
+        "date":  "2023-02-06",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.2c00332",
+        "url":  "https://doi.org/10.1021/jasms.2c00332",
+        "authors":  [
+                        "Bin Wang",
+                        "Xiaofang Zhong",
+                        "Lauren Fields",
+                        "Haiyan Lu",
+                        "Zexin Zhu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "middle",
+        "citations":  14,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  6
+                        },
+                        {
+                            "year":  2025,
+                            "count":  2
+                        },
+                        {
+                            "year":  2026,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4319301719"
+    },
+    {
+        "title":  "HyPep: An Open-Source Software for Identification and Discovery of Neuropeptides Using Sequence Homology Search",
+        "year":  2023,
+        "date":  "2023-01-25",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.2c00597",
+        "url":  "https://doi.org/10.1021/acs.jproteome.2c00597",
+        "authors":  [
+                        "Nhu Q. Vu",
+                        "Hsu-Ching Yen",
+                        "Lauren Fields",
+                        "Weifeng Cao",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "middle",
+        "citations":  10,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  5
+                        },
+                        {
+                            "year":  2025,
+                            "count":  3
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4318021605"
+    },
+    {
+        "title":  "Proteome-wide Profiling of Asymmetric Dimethylated Arginine in Human Breast Tumors",
+        "year":  2023,
+        "date":  "2023-07-18",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.3c00154",
+        "url":  "https://doi.org/10.1021/jasms.3c00154",
+        "authors":  [
+                        "M Ma",
+                        "Fabao Liu",
+                        "Hannah N. Miles",
+                        "Eui‐Jun Kim",
+                        "Lauren Fields",
+                        "Wei Xu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  7,
+        "position":  "middle",
+        "citations":  10,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  4
+                        },
+                        {
+                            "year":  2025,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4384662136"
+    },
+    {
+        "title":  "Recent advances in characterization of citrullination and its implication in human disease research: From method development to network integration",
+        "year":  2022,
+        "date":  "2022-12-22",
+        "venue":  "PROTEOMICS",
+        "doi":  "https://doi.org/10.1002/pmic.202200286",
+        "url":  "https://doi.org/10.1002/pmic.202200286",
+        "authors":  [
+                        "Bin Wang",
+                        "Lauren Fields",
+                        "Lingjun Li"
+                    ],
+        "author_count":  3,
+        "position":  "middle",
+        "citations":  8,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  3
+                        },
+                        {
+                            "year":  2025,
+                            "count":  2
+                        },
+                        {
+                            "year":  2026,
+                            "count":  3
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4312077278"
+    },
+    {
+        "title":  "Short chain α-pyrones capable of potentiating penicillin G against Pseudomonas aeruginosa",
+        "year":  2020,
+        "date":  "2020-06-02",
+        "venue":  "Bioorganic \u0026 Medicinal Chemistry Letters",
+        "doi":  "https://doi.org/10.1016/j.bmcl.2020.127301",
+        "url":  "https://doi.org/10.1016/j.bmcl.2020.127301",
+        "authors":  [
+                        "Lauren Fields",
+                        "Whitney R. Craig",
+                        "Clair A. Huffine",
+                        "CATHERINE F. ALLEN",
+                        "Leah M. Bouthillette",
+                        "Jacob C. Chappell",
+                        "Jacob T. Shumate",
+                        "Amanda L. Wolfe"
+                    ],
+        "author_count":  8,
+        "position":  "first",
+        "citations":  1,
+        "by_year":  [
+                        {
+                            "year":  2022,
+                            "count":  1
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  false,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W3033559275"
+    },
+    {
+        "title":  "Effects of Shade on Antibacterial Production in \u003ci\u003eAloe Vera\u003c/i\u003e Plants: A Model Course Based Undergraduate Research Experience for First- and Second-Year Chemistry and Biochemistry Students",
+        "year":  2019,
+        "date":  "2019-12-20",
+        "venue":  "World journal of chemical education",
+        "doi":  "https://doi.org/10.12691/wjce-7-4-3",
+        "url":  "https://doi.org/10.12691/wjce-7-4-3",
+        "authors":  [
+                        "Lauren Fields",
+                        "Whitney R. Craig",
+                        "Sally A. Wasileski",
+                        "Amanda L. Wolfe"
+                    ],
+        "author_count":  4,
+        "position":  "first",
+        "citations":  3,
+        "by_year":  [
+                        {
+                            "year":  2022,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  1
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W2996116000"
+    }
+]</script>
+<script id="sumdata" type="application/json">{
+    "name":  "Lauren Fields",
+    "orcid":  "0000-0001-8155-642X",
+    "affiliation":  "University of Wisconsin–Madison",
+    "tagline":  "Mass spectrometry, neuropeptidomics, and structural proteomics",
+    "generated_utc":  "2026-07-22T17:01:25Z",
+    "current_year":  2026,
+    "total_papers":  23,
+    "total_citations":  259,
+    "h_index":  10,
+    "i10_index":  10,
+    "first_author":  11,
+    "preprints":  4,
+    "open_access":  22,
+    "excluded_count":  7,
+    "citation_growth":  [
+                            {
+                                "year":  2022,
+                                "received":  3,
+                                "cumulative":  3
+                            },
+                            {
+                                "year":  2023,
+                                "received":  10,
+                                "cumulative":  13
+                            },
+                            {
+                                "year":  2024,
+                                "received":  66,
+                                "cumulative":  79
+                            },
+                            {
+                                "year":  2025,
+                                "received":  108,
+                                "cumulative":  187
+                            },
+                            {
+                                "year":  2026,
+                                "received":  72,
+                                "cumulative":  259
+                            }
+                        ],
+    "papers_by_year":  [
+                           {
+                               "year":  2019,
+                               "papers":  1,
+                               "citations":  3
+                           },
+                           {
+                               "year":  2020,
+                               "papers":  1,
+                               "citations":  1
+                           },
+                           {
+                               "year":  2022,
+                               "papers":  1,
+                               "citations":  8
+                           },
+                           {
+                               "year":  2023,
+                               "papers":  6,
+                               "citations":  167
+                           },
+                           {
+                               "year":  2024,
+                               "papers":  6,
+                               "citations":  61
+                           },
+                           {
+                               "year":  2025,
+                               "papers":  5,
+                               "citations":  19
+                           },
+                           {
+                               "year":  2026,
+                               "papers":  3,
+                               "citations":  0
+                           }
+                       ]
+}</script>
+<script>
+(function () {
+  "use strict";
+  var PUBS = JSON.parse(document.getElementById('pubdata').textContent);
+  var S    = JSON.parse(document.getElementById('sumdata').textContent);
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var tip = document.getElementById('tip');
+
+  function el(tag, attrs, text) {
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function showTip(evt, html) {
+    tip.innerHTML = html;
+    tip.classList.add('on');
+    var pad = 14, r = tip.getBoundingClientRect();
+    var x = evt.clientX + pad, y = evt.clientY - r.height - pad;
+    if (x + r.width > window.innerWidth - 8) x = evt.clientX - r.width - pad;
+    if (y < 8) y = evt.clientY + pad;
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  }
+  function hideTip() { tip.classList.remove('on'); }
+
+  // ---- Header ----------------------------------------------------------
+  document.getElementById('name').textContent = S.name;
+  document.getElementById('affil').textContent = S.affiliation;
+  document.getElementById('tagline').textContent = S.tagline;
+  document.getElementById('orcidText').textContent = 'ORCID ' + S.orcid;
+  document.getElementById('orcidLink').href = 'https://orcid.org/' + S.orcid;
+  document.title = S.name + ' — Publications';
+
+  // ---- KPI row ---------------------------------------------------------
+  var kpis = [
+    { v: S.total_citations, l: 'Citations', hero: true },
+    { v: S.total_papers,    l: 'Publications' },
+    { v: S.h_index,         l: 'h-index' },
+    { v: S.first_author,    l: 'First-author' }
+  ];
+  var kroot = document.getElementById('kpis');
+  kpis.forEach(function (k) {
+    var d = document.createElement('div');
+    d.className = 'kpi' + (k.hero ? ' hero' : '');
+    d.innerHTML = '<span class="v"></span><span class="l"></span>';
+    d.querySelector('.v').textContent = k.v;
+    d.querySelector('.l').textContent = k.l;
+    kroot.appendChild(d);
+  });
+
+  // ---- Chart 1: cumulative citations (area, single series) --------------
+  // The current year is partial, so its segment is dashed and its point hollow -
+  // a solid line to a partial total reads as a decline.
+  var G = S.citation_growth;
+  (function drawGrowth() {
+    if (!G.length) return;
+    var svg = document.getElementById('growthChart');
+    var W = 420, H = 230, m = { t: 18, r: 16, b: 30, l: 42 };
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var max = Math.max.apply(null, G.map(function (d) { return d.cumulative; }));
+    var top = Math.ceil(max / 50) * 50 || 50;
+    var X = function (i) { return m.l + (G.length === 1 ? iw / 2 : i * iw / (G.length - 1)); };
+    var Y = function (v) { return m.t + ih - (v / top) * ih; };
+
+    for (var t = 0; t <= top; t += top / 4) {
+      svg.appendChild(el('line', { x1: m.l, x2: m.l + iw, y1: Y(t), y2: Y(t),
+        class: t === 0 ? 'baseline' : 'gridline' }));
+      svg.appendChild(el('text', { x: m.l - 8, y: Y(t) + 4, class: 'tick', 'text-anchor': 'end' }, t));
+    }
+
+    var lastIdx = G.length - 1;
+    var partial = G[lastIdx].year >= S.current_year;
+    var pts = G.map(function (d, i) { return X(i) + ',' + Y(d.cumulative); });
+
+    // Area fill under the whole series.
+    svg.appendChild(el('polygon', {
+      points: X(0) + ',' + Y(0) + ' ' + pts.join(' ') + ' ' + X(lastIdx) + ',' + Y(0),
+      fill: 'var(--series-soft)'
+    }));
+
+    // Solid line through complete years; dashed for the partial final segment.
+    var solidEnd = partial ? lastIdx - 1 : lastIdx;
+    if (solidEnd > 0) {
+      svg.appendChild(el('polyline', { points: pts.slice(0, solidEnd + 1).join(' '),
+        fill: 'none', stroke: 'var(--series)', 'stroke-width': 2,
+        'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    }
+    if (partial && lastIdx > 0) {
+      svg.appendChild(el('polyline', { points: pts.slice(solidEnd).join(' '),
+        fill: 'none', stroke: 'var(--series)', 'stroke-width': 2,
+        'stroke-dasharray': '4 3', 'stroke-linecap': 'round' }));
+    }
+
+    G.forEach(function (d, i) {
+      var hollow = partial && i === lastIdx;
+      svg.appendChild(el('circle', { cx: X(i), cy: Y(d.cumulative), r: 4.5,
+        fill: hollow ? 'var(--surface-1)' : 'var(--series)',
+        stroke: hollow ? 'var(--series)' : 'var(--surface-1)', 'stroke-width': 2 }));
+      svg.appendChild(el('text', { x: X(i), y: H - 10, class: 'tick', 'text-anchor': 'middle' },
+        d.year + (hollow ? '*' : '')));
+    });
+
+    // Direct-label the endpoint only - a number on every point is noise.
+    var lastPt = G[lastIdx];
+    svg.appendChild(el('text', { x: X(lastIdx), y: Y(lastPt.cumulative) - 12,
+      class: 'dlabel', 'text-anchor': 'end' }, lastPt.cumulative));
+
+    // Hover: invisible full-height bands, wider than the marks.
+    G.forEach(function (d, i) {
+      var bw = iw / G.length;
+      var r = el('rect', { x: X(i) - bw / 2, y: m.t, width: bw, height: ih,
+        fill: 'transparent', style: 'cursor:crosshair' });
+      r.addEventListener('mousemove', function (e) {
+        showTip(e, '<b>' + d.year + (d.year >= S.current_year ? ' (to date)' : '') + '</b><br>' +
+          '<b>' + d.cumulative + '</b> total · <b>+' + d.received + '</b> this year');
+      });
+      r.addEventListener('mouseleave', hideTip);
+      svg.appendChild(r);
+    });
+
+    document.getElementById('growthSub').textContent =
+      'Cumulative, ' + G[0].year + '–' + G[lastIdx].year + (partial ? ' (* year to date)' : '');
+    document.getElementById('growthDesc').textContent =
+      'Cumulative citations rising from ' + G[0].cumulative + ' in ' + G[0].year +
+      ' to ' + lastPt.cumulative + ' in ' + lastPt.year + '.';
+
+    var rows = '<tr><th>Year</th><th>Received</th><th>Cumulative</th></tr>';
+    G.forEach(function (d) {
+      rows += '<tr><td>' + d.year + (d.year >= S.current_year ? ' (to date)' : '') +
+        '</td><td>' + d.received + '</td><td>' + d.cumulative + '</td></tr>';
+    });
+    document.getElementById('growthTable').innerHTML = rows;
+  })();
+
+  // ---- Chart 2: publications per year (bars, single series) -------------
+  (function drawPubs() {
+    var P = S.papers_by_year;
+    if (!P.length) return;
+    var svg = document.getElementById('pubsChart');
+    var W = 420, H = 230, m = { t: 18, r: 16, b: 30, l: 42 };
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var max = Math.max.apply(null, P.map(function (d) { return d.papers; }));
+    var top = Math.max(max, 2);
+    var Y = function (v) { return m.t + ih - (v / top) * ih; };
+    var slot = iw / P.length;
+    var bw = Math.min(slot - 8, 46);   // the 2px+ surface gap between adjacent bars
+
+    for (var t = 0; t <= top; t++) {
+      if (top > 6 && t % 2) continue;
+      svg.appendChild(el('line', { x1: m.l, x2: m.l + iw, y1: Y(t), y2: Y(t),
+        class: t === 0 ? 'baseline' : 'gridline' }));
+      svg.appendChild(el('text', { x: m.l - 8, y: Y(t) + 4, class: 'tick', 'text-anchor': 'end' }, t));
+    }
+
+    P.forEach(function (d, i) {
+      var cx = m.l + slot * i + slot / 2;
+      var h = ih - (Y(d.papers) - m.t);
+      // 4px rounded data-end, anchored square to the baseline.
+      var g = el('g', {});
+      g.appendChild(el('rect', { x: cx - bw / 2, y: Y(d.papers), width: bw,
+        height: Math.max(h, 1), rx: 4, fill: 'var(--series)' }));
+      if (h > 6) {
+        g.appendChild(el('rect', { x: cx - bw / 2, y: Y(d.papers) + 4, width: bw,
+          height: Math.max(h - 4, 1), fill: 'var(--series)' }));
+      }
+      g.setAttribute('style', 'cursor:pointer');
+      g.addEventListener('mousemove', function (e) {
+        showTip(e, '<b>' + d.year + '</b><br><b>' + d.papers + '</b> publication' +
+          (d.papers === 1 ? '' : 's') + ' · <b>' + d.citations + '</b> citations');
+      });
+      g.addEventListener('mouseleave', hideTip);
+      svg.appendChild(g);
+
+      svg.appendChild(el('text', { x: cx, y: Y(d.papers) - 6, class: 'dlabel',
+        'text-anchor': 'middle' }, d.papers));
+      svg.appendChild(el('text', { x: cx, y: H - 10, class: 'tick', 'text-anchor': 'middle' }, d.year));
+    });
+
+    document.getElementById('pubsSub').textContent =
+      S.total_papers + ' publications, ' + P[0].year + '–' + P[P.length - 1].year;
+    document.getElementById('pubsDesc').textContent =
+      'Publications per year, peaking at ' + max + '.';
+
+    var rows = '<tr><th>Year</th><th>Papers</th><th>Citations</th></tr>';
+    P.forEach(function (d) {
+      rows += '<tr><td>' + d.year + '</td><td>' + d.papers + '</td><td>' + d.citations + '</td></tr>';
+    });
+    document.getElementById('pubsTable').innerHTML = rows;
+  })();
+
+  // ---- Publication list ------------------------------------------------
+  var surname = S.name.split(' ').pop();
+  var meRe = new RegExp('^' + S.name.split(' ')[0] + '\\b.*\\b' + surname + '$', 'i');
+
+  function authorHtml(list) {
+    var shown = list.slice(0, 10).map(function (a) {
+      var safe = a.replace(/[<>&]/g, function (c) {
+        return { '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c];
+      });
+      return meRe.test(a) ? '<span class="me">' + safe + '</span>' : safe;
+    });
+    var extra = list.length - shown.length;
+    return shown.join(', ') + (extra > 0 ? ', <span style="color:var(--muted)">+' + extra + ' more</span>' : '');
+  }
+  function esc(s) {
+    return String(s).replace(/[<>&]/g, function (c) {
+      return { '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c];
+    });
+  }
+
+  var list = document.getElementById('pubList');
+  var currentYear = null;
+  PUBS.forEach(function (p) {
+    if (p.year !== currentYear) {
+      currentYear = p.year;
+      var hy = document.createElement('div');
+      hy.className = 'yr';
+      hy.textContent = currentYear;
+      list.appendChild(hy);
+    }
+    var d = document.createElement('article');
+    d.className = 'pub';
+    var badges = '';
+    if (p.is_preprint) badges += '<span class="badge pre">Preprint</span>';
+    if (p.position === 'first') badges += '<span class="badge first">First author</span>';
+    if (p.open_access && !p.is_preprint) badges += '<span class="badge oa">Open access</span>';
+    var titleHtml = p.url
+      ? '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>'
+      : esc(p.title);
+    d.innerHTML =
+      '<div class="cite' + (p.citations === 0 ? ' zero' : '') + '">' +
+        '<span class="n">' + p.citations + '</span>' +
+        '<span class="u">cite' + (p.citations === 1 ? '' : 's') + '</span>' +
+      '</div>' +
+      '<div class="body">' +
+        '<p class="t">' + titleHtml + '</p>' +
+        '<p class="a">' + authorHtml(p.authors) + '</p>' +
+        '<p class="v">' + esc(p.venue) + badges + '</p>' +
+      '</div>';
+    list.appendChild(d);
+  });
+
+  document.getElementById('listSub').textContent =
+    S.total_papers + ' works · ' + S.preprints + ' preprints · ' +
+    S.open_access + ' open access · sorted newest first';
+
+  // ---- Footer ----------------------------------------------------------
+  var gen = new Date(S.generated_utc);
+  document.getElementById('footer').innerHTML =
+    '<p>Publication metadata and citation counts from ' +
+    '<a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a>, ' +
+    'matched to <a href="https://orcid.org/' + S.orcid + '" target="_blank" rel="noopener">ORCID ' +
+    S.orcid + '</a>.</p>' +
+    '<p>Citation counts are as reported by OpenAlex and will differ from Google Scholar, ' +
+    'which indexes more sources. ' + S.excluded_count + ' works returned under this ORCID were ' +
+    'excluded as misattributions or duplicate deposits.</p>' +
+    '<p>Last updated ' + gen.toLocaleDateString(undefined,
+      { year: 'numeric', month: 'long', day: 'numeric' }) + '.</p>';
+})();
+</script>
+</body>
+</html>

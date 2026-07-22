@@ -1,0 +1,771 @@
+[
+    {
+        "title":  "Bridging genomes and peptidomes: hybrid sequencing reveals conserved bioactive peptides in crustaceans",
+        "year":  2026,
+        "date":  "2026-05-07",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.64898/2026.05.04.721987",
+        "url":  "https://doi.org/10.64898/2026.05.04.721987",
+        "authors":  [
+                        "Lauren Fields",
+                        "Jiangrong Qin",
+                        "Angel E. Ibarra",
+                        "Kendra G. Selby",
+                        "Tong Gao",
+                        "Tina C. Dang",
+                        "Haiyan Lu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  8,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W7160499998"
+    },
+    {
+        "title":  "Global Profiling of Post-Translationally Modified Crustacean Neuropeptidome Trends Affiliated with Feeding Activity",
+        "year":  2026,
+        "date":  "2026-03-18",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.6c00017",
+        "url":  "https://doi.org/10.1021/jasms.6c00017",
+        "authors":  [
+                        "Lauren Fields",
+                        "Kendra G. Selby",
+                        "Meghan M. Hayes",
+                        "Paul Corsetti",
+                        "Tong Gao",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W7138918752"
+    },
+    {
+        "title":  "Neuropeptide Diversity Encoded in Newly Sequenced Crustacean Genomes Reveals Signaling Roles during Feeding",
+        "year":  2026,
+        "date":  "2026-06-11",
+        "venue":  "ACS Chemical Neuroscience",
+        "doi":  "https://doi.org/10.1021/acschemneuro.6c00123",
+        "url":  "https://doi.org/10.1021/acschemneuro.6c00123",
+        "authors":  [
+                        "Lauren Fields",
+                        "Vu Ngoc Huong Tran",
+                        "Thao Duong",
+                        "Tina C. Dang",
+                        "Kendra G. Selby",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W7164369298"
+    },
+    {
+        "title":  "Decoding Neuropeptide Complexity: Advancing Neurobiological Insights from Invertebrates to Vertebrates through Evolutionary Perspectives",
+        "year":  2025,
+        "date":  "2025-04-22",
+        "venue":  "ACS Chemical Neuroscience",
+        "doi":  "https://doi.org/10.1021/acschemneuro.5c00053",
+        "url":  "https://doi.org/10.1021/acschemneuro.5c00053",
+        "authors":  [
+                        "Lauren Fields",
+                        "Tina C. Dang",
+                        "Vu Ngoc Huong Tran",
+                        "Angel Erbey Ibarra",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "first",
+        "citations":  13,
+        "by_year":  [
+                        {
+                            "year":  2025,
+                            "count":  5
+                        },
+                        {
+                            "year":  2026,
+                            "count":  8
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4409668465"
+    },
+    {
+        "title":  "cNPDB: A comprehensive empirical crustacean neuropeptide database",
+        "year":  2025,
+        "date":  "2025-08-01",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.1101/2025.07.29.667494",
+        "url":  "https://doi.org/10.1101/2025.07.29.667494",
+        "authors":  [
+                        "Vu Ngoc Huong Tran",
+                        "Thao Duong",
+                        "Lauren Fields",
+                        "Kosta Tourlouskis",
+                        "Margot Beaver",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "middle",
+        "citations":  4,
+        "by_year":  [
+                        {
+                            "year":  2026,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W4412835683"
+    },
+    {
+        "title":  "Unlocking the Neuropeptidome using a Novel Endogenous Peptidomics Framework",
+        "year":  2025,
+        "date":  "2025-06-15",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.1101/2025.06.12.659356",
+        "url":  "https://doi.org/10.1101/2025.06.12.659356",
+        "authors":  [
+                        "Lauren Fields",
+                        "Wenxin Wu",
+                        "Tina C. Dang",
+                        "Angel Erbey Ibarra",
+                        "Mitchell Gray",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  2,
+        "by_year":  [
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W4411325590"
+    },
+    {
+        "title":  "MSIght: A Modular Platform for Improved Confidence in Global, Untargeted Mass Spectrometry Imaging Annotation",
+        "year":  2025,
+        "date":  "2025-04-08",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.4c01140",
+        "url":  "https://doi.org/10.1021/acs.jproteome.4c01140",
+        "authors":  [
+                        "Lauren Fields",
+                        "Hannah N. Miles",
+                        "Alexis Adrián",
+                        "Elliot Patrenets",
+                        "William A. Ricke",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4409244905"
+    },
+    {
+        "title":  "EndoGenius: Enabling comprehensive identification and quantitation of endogenous peptides",
+        "year":  2025,
+        "date":  "2025-06-13",
+        "venue":  "bioRxiv (Cold Spring Harbor Laboratory)",
+        "doi":  "https://doi.org/10.1101/2025.06.12.659347",
+        "url":  "https://doi.org/10.1101/2025.06.12.659347",
+        "authors":  [
+                        "Lauren Fields",
+                        "Tina C. Dang",
+                        "Mitchell Gray",
+                        "Satirtha Saha Protya",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "first",
+        "citations":  0,
+        "by_year":  [
+
+                    ],
+        "is_preprint":  true,
+        "open_access":  true,
+        "type":  "preprint",
+        "openalex_id":  "https://openalex.org/W4411265711"
+    },
+    {
+        "title":  "Mass Spectrometry Structural Proteomics Enabled by Limited Proteolysis and Cross‐Linking",
+        "year":  2024,
+        "date":  "2024-09-19",
+        "venue":  "Mass Spectrometry Reviews",
+        "doi":  "https://doi.org/10.1002/mas.21908",
+        "url":  "https://doi.org/10.1002/mas.21908",
+        "authors":  [
+                        "Haiyan Lu",
+                        "Zexin Zhu",
+                        "Lauren Fields",
+                        "Hua Zhang",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "middle",
+        "citations":  21,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  2
+                        },
+                        {
+                            "year":  2025,
+                            "count":  12
+                        },
+                        {
+                            "year":  2026,
+                            "count":  7
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4402693124"
+    },
+    {
+        "title":  "A crustacean neuropeptide spectral library for data‐independent acquisition (DIA) mass spectrometry applications",
+        "year":  2024,
+        "date":  "2024-01-03",
+        "venue":  "PROTEOMICS",
+        "doi":  "https://doi.org/10.1002/pmic.202300285",
+        "url":  "https://doi.org/10.1002/pmic.202300285",
+        "authors":  [
+                        "Lauren Fields",
+                        "M Ma",
+                        "Kellen DeLaney",
+                        "Ashley Phetsanthad",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "first",
+        "citations":  12,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  2
+                        },
+                        {
+                            "year":  2025,
+                            "count":  6
+                        },
+                        {
+                            "year":  2026,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4390561397"
+    },
+    {
+        "title":  "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
+        "year":  2024,
+        "date":  "2024-03-01",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.3c00758",
+        "url":  "https://doi.org/10.1021/acs.jproteome.3c00758",
+        "authors":  [
+                        "Lauren Fields",
+                        "Nhu Q. Vu",
+                        "Tina C. Dang",
+                        "Hsu-Ching Yen",
+                        "M Ma",
+                        "Wenxin Wu",
+                        "Mitchell Gray",
+                        "Lingjun Li"
+                    ],
+        "author_count":  8,
+        "position":  "first",
+        "citations":  12,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  3
+                        },
+                        {
+                            "year":  2025,
+                            "count":  7
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4392359170"
+    },
+    {
+        "title":  "MotifQuest: An Automated Pipeline for Motif Database Creation to Improve Peptidomics Database Searching Programs",
+        "year":  2024,
+        "date":  "2024-07-26",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.4c00192",
+        "url":  "https://doi.org/10.1021/jasms.4c00192",
+        "authors":  [
+                        "Tina C. Dang",
+                        "Lauren Fields",
+                        "Lingjun Li"
+                    ],
+        "author_count":  3,
+        "position":  "middle",
+        "citations":  7,
+        "by_year":  [
+                        {
+                            "year":  2025,
+                            "count":  4
+                        },
+                        {
+                            "year":  2026,
+                            "count":  3
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4401026903"
+    },
+    {
+        "title":  "Mass Spectrometry-Based Precise Identification of Citrullinated Histones via Limited Digestion and Biotin Derivative Tag Enrichment",
+        "year":  2024,
+        "date":  "2024-01-29",
+        "venue":  "Analytical Chemistry",
+        "doi":  "https://doi.org/10.1021/acs.analchem.3c02646",
+        "url":  "https://doi.org/10.1021/acs.analchem.3c02646",
+        "authors":  [
+                        "Bin Wang",
+                        "Zihui Li",
+                        "Yatao Shi",
+                        "Zexin Zhu",
+                        "Lauren Fields",
+                        "Miriam A. Shelef",
+                        "Lingjun Li"
+                    ],
+        "author_count":  7,
+        "position":  "middle",
+        "citations":  6,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  2
+                        },
+                        {
+                            "year":  2025,
+                            "count":  1
+                        },
+                        {
+                            "year":  2026,
+                            "count":  3
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4391304276"
+    },
+    {
+        "title":  "An Updated Guide to the Identification, Quantitation, and Imaging of the Crustacean Neuropeptidome",
+        "year":  2024,
+        "date":  "2024-01-01",
+        "venue":  "Methods in molecular biology",
+        "doi":  "https://doi.org/10.1007/978-1-0716-3646-6_14",
+        "url":  "https://doi.org/10.1007/978-1-0716-3646-6_14",
+        "authors":  [
+                        "Wenxin Wu",
+                        "Lauren Fields",
+                        "Kellen DeLaney",
+                        "Amanda R. Buchberger",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "middle",
+        "citations":  3,
+        "by_year":  [
+                        {
+                            "year":  2025,
+                            "count":  1
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "book-chapter",
+        "openalex_id":  "https://openalex.org/W4393285660"
+    },
+    {
+        "title":  "Single-cell lipidomics enabled by dual-polarity ionization and ion mobility-mass spectrometry imaging",
+        "year":  2023,
+        "date":  "2023-08-25",
+        "venue":  "Nature Communications",
+        "doi":  "https://doi.org/10.1038/s41467-023-40512-6",
+        "url":  "https://doi.org/10.1038/s41467-023-40512-6",
+        "authors":  [
+                        "Hua Zhang",
+                        "Yuan Liu",
+                        "Lauren Fields",
+                        "Xudong Shi",
+                        "Penghsuan Huang",
+                        "Haiyan Lu",
+                        "Andrew J. Schneider",
+                        "Xindi Tang",
+                        "Luigi Puglielli",
+                        "Nathan V. Welham",
+                        "Lingjun Li"
+                    ],
+        "author_count":  11,
+        "position":  "middle",
+        "citations":  99,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  5
+                        },
+                        {
+                            "year":  2024,
+                            "count":  23
+                        },
+                        {
+                            "year":  2025,
+                            "count":  51
+                        },
+                        {
+                            "year":  2026,
+                            "count":  20
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4386163297"
+    },
+    {
+        "title":  "DiLeu Isobaric Labeling Coupled with Limited Proteolysis Mass Spectrometry for High-Throughput Profiling of Protein Structural Changes in Alzheimer’s Disease",
+        "year":  2023,
+        "date":  "2023-06-12",
+        "venue":  "Analytical Chemistry",
+        "doi":  "https://doi.org/10.1021/acs.analchem.2c05731",
+        "url":  "https://doi.org/10.1021/acs.analchem.2c05731",
+        "authors":  [
+                        "Haiyan Lu",
+                        "Bin Wang",
+                        "Yuan Liu",
+                        "Danqing Wang",
+                        "Lauren Fields",
+                        "Hua Zhang",
+                        "Miyang Li",
+                        "Xudong Shi",
+                        "Henrik Zetterberg",
+                        "Lingjun Li"
+                    ],
+        "author_count":  10,
+        "position":  "middle",
+        "citations":  19,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  8
+                        },
+                        {
+                            "year":  2025,
+                            "count":  5
+                        },
+                        {
+                            "year":  2026,
+                            "count":  6
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4380291971"
+    },
+    {
+        "title":  "Definitive Screening Designs to Optimize Library-Free DIA-MS Identification and Quantification of Neuropeptides",
+        "year":  2023,
+        "date":  "2023-03-15",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.3c00088",
+        "url":  "https://doi.org/10.1021/acs.jproteome.3c00088",
+        "authors":  [
+                        "Ashley Phetsanthad",
+                        "Austin V. Carr",
+                        "Lauren Fields",
+                        "Lingjun Li"
+                    ],
+        "author_count":  4,
+        "position":  "middle",
+        "citations":  15,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  1
+                        },
+                        {
+                            "year":  2024,
+                            "count":  7
+                        },
+                        {
+                            "year":  2025,
+                            "count":  5
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4324326953"
+    },
+    {
+        "title":  "Structural Proteomic Profiling of Cerebrospinal Fluids to Reveal Novel Conformational Biomarkers for Alzheimer’s Disease",
+        "year":  2023,
+        "date":  "2023-02-06",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.2c00332",
+        "url":  "https://doi.org/10.1021/jasms.2c00332",
+        "authors":  [
+                        "Bin Wang",
+                        "Xiaofang Zhong",
+                        "Lauren Fields",
+                        "Haiyan Lu",
+                        "Zexin Zhu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  6,
+        "position":  "middle",
+        "citations":  14,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  6
+                        },
+                        {
+                            "year":  2025,
+                            "count":  2
+                        },
+                        {
+                            "year":  2026,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4319301719"
+    },
+    {
+        "title":  "HyPep: An Open-Source Software for Identification and Discovery of Neuropeptides Using Sequence Homology Search",
+        "year":  2023,
+        "date":  "2023-01-25",
+        "venue":  "Journal of Proteome Research",
+        "doi":  "https://doi.org/10.1021/acs.jproteome.2c00597",
+        "url":  "https://doi.org/10.1021/acs.jproteome.2c00597",
+        "authors":  [
+                        "Nhu Q. Vu",
+                        "Hsu-Ching Yen",
+                        "Lauren Fields",
+                        "Weifeng Cao",
+                        "Lingjun Li"
+                    ],
+        "author_count":  5,
+        "position":  "middle",
+        "citations":  10,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  5
+                        },
+                        {
+                            "year":  2025,
+                            "count":  3
+                        },
+                        {
+                            "year":  2026,
+                            "count":  2
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4318021605"
+    },
+    {
+        "title":  "Proteome-wide Profiling of Asymmetric Dimethylated Arginine in Human Breast Tumors",
+        "year":  2023,
+        "date":  "2023-07-18",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.3c00154",
+        "url":  "https://doi.org/10.1021/jasms.3c00154",
+        "authors":  [
+                        "M Ma",
+                        "Fabao Liu",
+                        "Hannah N. Miles",
+                        "Eui‐Jun Kim",
+                        "Lauren Fields",
+                        "Wei Xu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  7,
+        "position":  "middle",
+        "citations":  10,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  4
+                        },
+                        {
+                            "year":  2025,
+                            "count":  4
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4384662136"
+    },
+    {
+        "title":  "Recent advances in characterization of citrullination and its implication in human disease research: From method development to network integration",
+        "year":  2022,
+        "date":  "2022-12-22",
+        "venue":  "PROTEOMICS",
+        "doi":  "https://doi.org/10.1002/pmic.202200286",
+        "url":  "https://doi.org/10.1002/pmic.202200286",
+        "authors":  [
+                        "Bin Wang",
+                        "Lauren Fields",
+                        "Lingjun Li"
+                    ],
+        "author_count":  3,
+        "position":  "middle",
+        "citations":  8,
+        "by_year":  [
+                        {
+                            "year":  2024,
+                            "count":  3
+                        },
+                        {
+                            "year":  2025,
+                            "count":  2
+                        },
+                        {
+                            "year":  2026,
+                            "count":  3
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4312077278"
+    },
+    {
+        "title":  "Short chain α-pyrones capable of potentiating penicillin G against Pseudomonas aeruginosa",
+        "year":  2020,
+        "date":  "2020-06-02",
+        "venue":  "Bioorganic \u0026 Medicinal Chemistry Letters",
+        "doi":  "https://doi.org/10.1016/j.bmcl.2020.127301",
+        "url":  "https://doi.org/10.1016/j.bmcl.2020.127301",
+        "authors":  [
+                        "Lauren Fields",
+                        "Whitney R. Craig",
+                        "Clair A. Huffine",
+                        "CATHERINE F. ALLEN",
+                        "Leah M. Bouthillette",
+                        "Jacob C. Chappell",
+                        "Jacob T. Shumate",
+                        "Amanda L. Wolfe"
+                    ],
+        "author_count":  8,
+        "position":  "first",
+        "citations":  1,
+        "by_year":  [
+                        {
+                            "year":  2022,
+                            "count":  1
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  false,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W3033559275"
+    },
+    {
+        "title":  "Effects of Shade on Antibacterial Production in \u003ci\u003eAloe Vera\u003c/i\u003e Plants: A Model Course Based Undergraduate Research Experience for First- and Second-Year Chemistry and Biochemistry Students",
+        "year":  2019,
+        "date":  "2019-12-20",
+        "venue":  "World journal of chemical education",
+        "doi":  "https://doi.org/10.12691/wjce-7-4-3",
+        "url":  "https://doi.org/10.12691/wjce-7-4-3",
+        "authors":  [
+                        "Lauren Fields",
+                        "Whitney R. Craig",
+                        "Sally A. Wasileski",
+                        "Amanda L. Wolfe"
+                    ],
+        "author_count":  4,
+        "position":  "first",
+        "citations":  3,
+        "by_year":  [
+                        {
+                            "year":  2022,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  1
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W2996116000"
+    }
+]

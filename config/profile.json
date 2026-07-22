@@ -1,0 +1,20 @@
+{
+  "name": "Lauren Fields",
+  "orcid": "0000-0001-8155-642X",
+  "affiliation": "University of Wisconsin–Madison",
+  "tagline": "Mass spectrometry, neuropeptidomics, and structural proteomics",
+
+  "_comment_exclusions": "OpenAlex merges distinct researchers who share a name into one author profile. These works are returned under the ORCID above but are NOT Lauren Fields' work, or are duplicate deposits of a work already in the list. Verified and excluded 2026-07-22.",
+  "excluded_works": [
+    { "id": "W2019018148", "year": 2009, "reason": "different-person", "note": "Kluyveromyces secretome (PROTEOMICS) - New England Biolabs, first author Catherine Madinger" },
+    { "id": "W2146365074", "year": 2010, "reason": "different-person", "note": "Constitutive secretion in Tetrahymena thermophila - first author Catherine Madinger" },
+    { "id": "W2072912603", "year": 2010, "reason": "different-person", "note": "Methylcytosine discrimination via nanopores (JACS, 170 citations) - Boston University / Penn, first author Meni Wanunu" },
+    { "id": "W1944063650", "year": 2013, "reason": "different-person", "note": "Body size and shape (Biol. J. Linnean Soc.) - first author Daniel Welsh" },
+    { "id": "W2018915616", "year": 2015, "reason": "different-person", "note": "Antarctic Trematomus antifreeze activity - Univ. of Illinois, a different Lauren Fields (confirmed by LF 2026-07-22)" },
+    { "id": "W2521795036", "year": 2015, "reason": "different-person", "note": "Environmental temperature and Antarctic fish antifreeze - same different Lauren Fields" },
+    { "id": "W7164741432", "year": 2026, "reason": "duplicate", "note": "Figshare deposit of the ACS Chem. Neurosci. paper 'Neuropeptide Diversity Encoded in Newly Sequenced Crustacean Genomes'" }
+  ],
+
+  "_comment_preprints": "bioRxiv entries are genuine standalone works, not preprints of the journal papers listed alongside them. In particular 'EndoGenius: Enabling comprehensive identification and quantitation' (bioRxiv 2025) is a sequel to 'EndoGenius: Optimized Neuropeptide Identification' (J. Proteome Res. 2024), not a preprint of it. Both are kept.",
+  "preprint_venues": ["bioRxiv", "bioRxiv (Cold Spring Harbor Laboratory)", "arXiv", "ChemRxiv", "Research Square"]
+}

@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<meta name="description" content="__DESCRIPTION__">
+<style>
+  /* Palette roles. Dark values are stepped for the dark surface, not flipped. */
+  :root {
+    color-scheme: light;
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --axis: #c3c2b7;
+    --series: #2a78d6;
+    --series-soft: rgba(42, 120, 214, 0.14);
+    --border: rgba(11, 11, 11, 0.10);
+    --success: #006300;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --axis: #383835;
+      --series: #3987e5;
+      --series-soft: rgba(57, 135, 229, 0.20);
+      --border: rgba(255, 255, 255, 0.10);
+      --success: #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --series: #3987e5;
+    --series-soft: rgba(57, 135, 229, 0.20);
+    --border: rgba(255, 255, 255, 0.10);
+    --success: #0ca30c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 72px; }
+  a { color: var(--series); }
+  a:hover { text-decoration: none; }
+
+  /* ---- Header ---- */
+  header { margin-bottom: 40px; }
+  h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.02em; }
+  .affil { color: var(--text-secondary); margin: 0 0 4px; font-size: 17px; }
+  .tagline { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
+  .orcid { font-size: 14px; color: var(--text-secondary); text-decoration: none;
+           display: inline-flex; align-items: center; gap: 6px; }
+  .orcid .dot { width: 8px; height: 8px; border-radius: 50%; background: #a6ce39; flex: none; }
+
+  /* ---- KPI row ---- */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 1px; background: var(--border); border: 1px solid var(--border);
+          border-radius: 10px; overflow: hidden; margin-bottom: 44px; }
+  .kpi { background: var(--surface-1); padding: 18px 20px; }
+  .kpi .v { font-size: 30px; font-weight: 650; letter-spacing: -0.02em; display: block; }
+  .kpi .l { font-size: 13px; color: var(--muted); }
+  .kpi.hero .v { font-size: 44px; color: var(--series); }
+
+  /* ---- Charts ---- */
+  .charts { display: grid; grid-template-columns: 1fr; gap: 28px; margin-bottom: 48px; }
+  @media (min-width: 760px) { .charts { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--surface-1); border: 1px solid var(--border);
+          border-radius: 10px; padding: 20px; }
+  .card h2 { font-size: 15px; margin: 0 0 2px; font-weight: 600; }
+  .card .sub { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
+  .chart { width: 100%; height: auto; display: block; overflow: visible; touch-action: none; }
+  .chart text { font-family: inherit; }
+  .tick { font-size: 11px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+  .gridline { stroke: var(--grid); stroke-width: 1; }
+  .baseline { stroke: var(--axis); stroke-width: 1; }
+  .dlabel { font-size: 11px; fill: var(--text-secondary); font-variant-numeric: tabular-nums; font-weight: 600; }
+
+  details.table-view { margin-top: 14px; }
+  details.table-view summary { font-size: 12px; color: var(--muted); cursor: pointer; }
+  details.table-view table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+  details.table-view th, details.table-view td {
+    text-align: right; padding: 4px 6px; border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums; }
+  details.table-view th:first-child, details.table-view td:first-child { text-align: left; }
+  details.table-view th { color: var(--muted); font-weight: 600; }
+
+  .tip { position: fixed; pointer-events: none; z-index: 20; background: var(--surface-1);
+         border: 1px solid var(--border); border-radius: 7px; padding: 7px 10px;
+         font-size: 12px; color: var(--text-primary); box-shadow: 0 3px 14px rgba(0,0,0,.14);
+         opacity: 0; transition: opacity .1s; white-space: nowrap; }
+  .tip.on { opacity: 1; }
+  .tip b { font-variant-numeric: tabular-nums; }
+
+  /* ---- Publication list ---- */
+  h2.section { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  .section-sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+  .yr { font-size: 13px; font-weight: 650; color: var(--muted); letter-spacing: .06em;
+        margin: 30px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .pub { padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; gap: 18px; }
+  .pub:last-child { border-bottom: none; }
+  .pub .cite { flex: none; width: 52px; text-align: right; padding-top: 2px; }
+  .pub .cite .n { font-size: 18px; font-weight: 650; font-variant-numeric: tabular-nums;
+                  display: block; line-height: 1.2; }
+  .pub .cite .u { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .pub .cite.zero .n { color: var(--muted); font-weight: 500; }
+  .pub .body { flex: 1; min-width: 0; }
+  .pub .t { font-size: 15.5px; font-weight: 560; margin: 0 0 5px; line-height: 1.4; }
+  .pub .t a { color: inherit; text-decoration: none; }
+  .pub .t a:hover { color: var(--series); }
+  .pub .a { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; }
+  .pub .a .me { font-weight: 680; color: var(--text-primary); }
+  .pub .v { font-size: 13px; color: var(--muted); font-style: italic; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 650; text-transform: uppercase;
+           letter-spacing: .05em; padding: 2px 6px; border-radius: 4px; vertical-align: 1.5px;
+           margin-left: 7px; font-style: normal; }
+  .badge.pre { background: var(--series-soft); color: var(--series); }
+  .badge.oa { background: transparent; color: var(--success); border: 1px solid currentColor; }
+  .badge.first { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
+  footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--border);
+           font-size: 13px; color: var(--muted); }
+  footer p { margin: 0 0 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1 id="name"></h1>
+    <p class="affil" id="affil"></p>
+    <p class="tagline" id="tagline"></p>
+    <a class="orcid" id="orcidLink" href="#" target="_blank" rel="noopener">
+      <span class="dot"></span><span id="orcidText"></span>
+    </a>
+  </header>
+
+  <section class="kpis" id="kpis" aria-label="Summary metrics"></section>
+
+  <section class="charts">
+    <div class="card">
+      <h2>Citations over time</h2>
+      <p class="sub" id="growthSub"></p>
+      <svg class="chart" id="growthChart" role="img" aria-labelledby="growthDesc">
+        <desc id="growthDesc"></desc>
+      </svg>
+      <details class="table-view">
+        <summary>Show data table</summary>
+        <table id="growthTable"></table>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>Publications per year</h2>
+      <p class="sub" id="pubsSub"></p>
+      <svg class="chart" id="pubsChart" role="img" aria-labelledby="pubsDesc">
+        <desc id="pubsDesc"></desc>
+      </svg>
+      <details class="table-view">
+        <summary>Show data table</summary>
+        <table id="pubsTable"></table>
+      </details>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section">Publications</h2>
+    <p class="section-sub" id="listSub"></p>
+    <div id="pubList"></div>
+  </section>
+
+  <footer id="footer"></footer>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script id="pubdata" type="application/json">__PUBLICATIONS__</script>
+<script id="sumdata" type="application/json">__SUMMARY__</script>
+<script>
+(function () {
+  "use strict";
+  var PUBS = JSON.parse(document.getElementById('pubdata').textContent);
+  var S    = JSON.parse(document.getElementById('sumdata').textContent);
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  var tip = document.getElementById('tip');
+
+  function el(tag, attrs, text) {
+    var n = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function showTip(evt, html) {
+    tip.innerHTML = html;
+    tip.classList.add('on');
+    var pad = 14, r = tip.getBoundingClientRect();
+    var x = evt.clientX + pad, y = evt.clientY - r.height - pad;
+    if (x + r.width > window.innerWidth - 8) x = evt.clientX - r.width - pad;
+    if (y < 8) y = evt.clientY + pad;
+    tip.style.left = x + 'px';
+    tip.style.top = y + 'px';
+  }
+  function hideTip() { tip.classList.remove('on'); }
+
+  // ---- Header ----------------------------------------------------------
+  document.getElementById('name').textContent = S.name;
+  document.getElementById('affil').textContent = S.affiliation;
+  document.getElementById('tagline').textContent = S.tagline;
+  document.getElementById('orcidText').textContent = 'ORCID ' + S.orcid;
+  document.getElementById('orcidLink').href = 'https://orcid.org/' + S.orcid;
+  document.title = S.name + ' — Publications';
+
+  // ---- KPI row ---------------------------------------------------------
+  var kpis = [
+    { v: S.total_citations, l: 'Citations', hero: true },
+    { v: S.total_papers,    l: 'Publications' },
+    { v: S.h_index,         l: 'h-index' },
+    { v: S.first_author,    l: 'First-author' }
+  ];
+  var kroot = document.getElementById('kpis');
+  kpis.forEach(function (k) {
+    var d = document.createElement('div');
+    d.className = 'kpi' + (k.hero ? ' hero' : '');
+    d.innerHTML = '<span class="v"></span><span class="l"></span>';
+    d.querySelector('.v').textContent = k.v;
+    d.querySelector('.l').textContent = k.l;
+    kroot.appendChild(d);
+  });
+
+  // ---- Chart 1: cumulative citations (area, single series) --------------
+  // The current year is partial, so its segment is dashed and its point hollow -
+  // a solid line to a partial total reads as a decline.
+  var G = S.citation_growth;
+  (function drawGrowth() {
+    if (!G.length) return;
+    var svg = document.getElementById('growthChart');
+    var W = 420, H = 230, m = { t: 18, r: 16, b: 30, l: 42 };
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var max = Math.max.apply(null, G.map(function (d) { return d.cumulative; }));
+    var top = Math.ceil(max / 50) * 50 || 50;
+    var X = function (i) { return m.l + (G.length === 1 ? iw / 2 : i * iw / (G.length - 1)); };
+    var Y = function (v) { return m.t + ih - (v / top) * ih; };
+
+    for (var t = 0; t <= top; t += top / 4) {
+      svg.appendChild(el('line', { x1: m.l, x2: m.l + iw, y1: Y(t), y2: Y(t),
+        class: t === 0 ? 'baseline' : 'gridline' }));
+      svg.appendChild(el('text', { x: m.l - 8, y: Y(t) + 4, class: 'tick', 'text-anchor': 'end' }, t));
+    }
+
+    var lastIdx = G.length - 1;
+    var partial = G[lastIdx].year >= S.current_year;
+    var pts = G.map(function (d, i) { return X(i) + ',' + Y(d.cumulative); });
+
+    // Area fill under the whole series.
+    svg.appendChild(el('polygon', {
+      points: X(0) + ',' + Y(0) + ' ' + pts.join(' ') + ' ' + X(lastIdx) + ',' + Y(0),
+      fill: 'var(--series-soft)'
+    }));
+
+    // Solid line through complete years; dashed for the partial final segment.
+    var solidEnd = partial ? lastIdx - 1 : lastIdx;
+    if (solidEnd > 0) {
+      svg.appendChild(el('polyline', { points: pts.slice(0, solidEnd + 1).join(' '),
+        fill: 'none', stroke: 'var(--series)', 'stroke-width': 2,
+        'stroke-linejoin': 'round', 'stroke-linecap': 'round' }));
+    }
+    if (partial && lastIdx > 0) {
+      svg.appendChild(el('polyline', { points: pts.slice(solidEnd).join(' '),
+        fill: 'none', stroke: 'var(--series)', 'stroke-width': 2,
+        'stroke-dasharray': '4 3', 'stroke-linecap': 'round' }));
+    }
+
+    G.forEach(function (d, i) {
+      var hollow = partial && i === lastIdx;
+      svg.appendChild(el('circle', { cx: X(i), cy: Y(d.cumulative), r: 4.5,
+        fill: hollow ? 'var(--surface-1)' : 'var(--series)',
+        stroke: hollow ? 'var(--series)' : 'var(--surface-1)', 'stroke-width': 2 }));
+      svg.appendChild(el('text', { x: X(i), y: H - 10, class: 'tick', 'text-anchor': 'middle' },
+        d.year + (hollow ? '*' : '')));
+    });
+
+    // Direct-label the endpoint only - a number on every point is noise.
+    var lastPt = G[lastIdx];
+    svg.appendChild(el('text', { x: X(lastIdx), y: Y(lastPt.cumulative) - 12,
+      class: 'dlabel', 'text-anchor': 'end' }, lastPt.cumulative));
+
+    // Hover: invisible full-height bands, wider than the marks.
+    G.forEach(function (d, i) {
+      var bw = iw / G.length;
+      var r = el('rect', { x: X(i) - bw / 2, y: m.t, width: bw, height: ih,
+        fill: 'transparent', style: 'cursor:crosshair' });
+      r.addEventListener('mousemove', function (e) {
+        showTip(e, '<b>' + d.year + (d.year >= S.current_year ? ' (to date)' : '') + '</b><br>' +
+          '<b>' + d.cumulative + '</b> total · <b>+' + d.received + '</b> this year');
+      });
+      r.addEventListener('mouseleave', hideTip);
+      svg.appendChild(r);
+    });
+
+    document.getElementById('growthSub').textContent =
+      'Cumulative, ' + G[0].year + '–' + G[lastIdx].year + (partial ? ' (* year to date)' : '');
+    document.getElementById('growthDesc').textContent =
+      'Cumulative citations rising from ' + G[0].cumulative + ' in ' + G[0].year +
+      ' to ' + lastPt.cumulative + ' in ' + lastPt.year + '.';
+
+    var rows = '<tr><th>Year</th><th>Received</th><th>Cumulative</th></tr>';
+    G.forEach(function (d) {
+      rows += '<tr><td>' + d.year + (d.year >= S.current_year ? ' (to date)' : '') +
+        '</td><td>' + d.received + '</td><td>' + d.cumulative + '</td></tr>';
+    });
+    document.getElementById('growthTable').innerHTML = rows;
+  })();
+
+  // ---- Chart 2: publications per year (bars, single series) -------------
+  (function drawPubs() {
+    var P = S.papers_by_year;
+    if (!P.length) return;
+    var svg = document.getElementById('pubsChart');
+    var W = 420, H = 230, m = { t: 18, r: 16, b: 30, l: 42 };
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var max = Math.max.apply(null, P.map(function (d) { return d.papers; }));
+    var top = Math.max(max, 2);
+    var Y = function (v) { return m.t + ih - (v / top) * ih; };
+    var slot = iw / P.length;
+    var bw = Math.min(slot - 8, 46);   // the 2px+ surface gap between adjacent bars
+
+    for (var t = 0; t <= top; t++) {
+      if (top > 6 && t % 2) continue;
+      svg.appendChild(el('line', { x1: m.l, x2: m.l + iw, y1: Y(t), y2: Y(t),
+        class: t === 0 ? 'baseline' : 'gridline' }));
+      svg.appendChild(el('text', { x: m.l - 8, y: Y(t) + 4, class: 'tick', 'text-anchor': 'end' }, t));
+    }
+
+    P.forEach(function (d, i) {
+      var cx = m.l + slot * i + slot / 2;
+      var h = ih - (Y(d.papers) - m.t);
+      // 4px rounded data-end, anchored square to the baseline.
+      var g = el('g', {});
+      g.appendChild(el('rect', { x: cx - bw / 2, y: Y(d.papers), width: bw,
+        height: Math.max(h, 1), rx: 4, fill: 'var(--series)' }));
+      if (h > 6) {
+        g.appendChild(el('rect', { x: cx - bw / 2, y: Y(d.papers) + 4, width: bw,
+          height: Math.max(h - 4, 1), fill: 'var(--series)' }));
+      }
+      g.setAttribute('style', 'cursor:pointer');
+      g.addEventListener('mousemove', function (e) {
+        showTip(e, '<b>' + d.year + '</b><br><b>' + d.papers + '</b> publication' +
+          (d.papers === 1 ? '' : 's') + ' · <b>' + d.citations + '</b> citations');
+      });
+      g.addEventListener('mouseleave', hideTip);
+      svg.appendChild(g);
+
+      svg.appendChild(el('text', { x: cx, y: Y(d.papers) - 6, class: 'dlabel',
+        'text-anchor': 'middle' }, d.papers));
+      svg.appendChild(el('text', { x: cx, y: H - 10, class: 'tick', 'text-anchor': 'middle' }, d.year));
+    });
+
+    document.getElementById('pubsSub').textContent =
+      S.total_papers + ' publications, ' + P[0].year + '–' + P[P.length - 1].year;
+    document.getElementById('pubsDesc').textContent =
+      'Publications per year, peaking at ' + max + '.';
+
+    var rows = '<tr><th>Year</th><th>Papers</th><th>Citations</th></tr>';
+    P.forEach(function (d) {
+      rows += '<tr><td>' + d.year + '</td><td>' + d.papers + '</td><td>' + d.citations + '</td></tr>';
+    });
+    document.getElementById('pubsTable').innerHTML = rows;
+  })();
+
+  // ---- Publication list ------------------------------------------------
+  var surname = S.name.split(' ').pop();
+  var meRe = new RegExp('^' + S.name.split(' ')[0] + '\\b.*\\b' + surname + '$', 'i');
+
+  function authorHtml(list) {
+    var shown = list.slice(0, 10).map(function (a) {
+      var safe = a.replace(/[<>&]/g, function (c) {
+        return { '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c];
+      });
+      return meRe.test(a) ? '<span class="me">' + safe + '</span>' : safe;
+    });
+    var extra = list.length - shown.length;
+    return shown.join(', ') + (extra > 0 ? ', <span style="color:var(--muted)">+' + extra + ' more</span>' : '');
+  }
+  function esc(s) {
+    return String(s).replace(/[<>&]/g, function (c) {
+      return { '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c];
+    });
+  }
+
+  var list = document.getElementById('pubList');
+  var currentYear = null;
+  PUBS.forEach(function (p) {
+    if (p.year !== currentYear) {
+      currentYear = p.year;
+      var hy = document.createElement('div');
+      hy.className = 'yr';
+      hy.textContent = currentYear;
+      list.appendChild(hy);
+    }
+    var d = document.createElement('article');
+    d.className = 'pub';
+    var badges = '';
+    if (p.is_preprint) badges += '<span class="badge pre">Preprint</span>';
+    if (p.position === 'first') badges += '<span class="badge first">First author</span>';
+    if (p.open_access && !p.is_preprint) badges += '<span class="badge oa">Open access</span>';
+    var titleHtml = p.url
+      ? '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>'
+      : esc(p.title);
+    d.innerHTML =
+      '<div class="cite' + (p.citations === 0 ? ' zero' : '') + '">' +
+        '<span class="n">' + p.citations + '</span>' +
+        '<span class="u">cite' + (p.citations === 1 ? '' : 's') + '</span>' +
+      '</div>' +
+      '<div class="body">' +
+        '<p class="t">' + titleHtml + '</p>' +
+        '<p class="a">' + authorHtml(p.authors) + '</p>' +
+        '<p class="v">' + esc(p.venue) + badges + '</p>' +
+      '</div>';
+    list.appendChild(d);
+  });
+
+  document.getElementById('listSub').textContent =
+    S.total_papers + ' works · ' + S.preprints + ' preprints · ' +
+    S.open_access + ' open access · sorted newest first';
+
+  // ---- Footer ----------------------------------------------------------
+  var gen = new Date(S.generated_utc);
+  document.getElementById('footer').innerHTML =
+    '<p>Publication metadata and citation counts from ' +
+    '<a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a>, ' +
+    'matched to <a href="https://orcid.org/' + S.orcid + '" target="_blank" rel="noopener">ORCID ' +
+    S.orcid + '</a>.</p>' +
+    '<p>Citation counts are as reported by OpenAlex and will differ from Google Scholar, ' +
+    'which indexes more sources. ' + S.excluded_count + ' works returned under this ORCID were ' +
+    'excluded as misattributions or duplicate deposits.</p>' +
+    '<p>Last updated ' + gen.toLocaleDateString(undefined,
+      { year: 'numeric', month: 'long', day: 'numeric' }) + '.</p>';
+})();
+</script>
+</body>
+</html>
