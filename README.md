@@ -68,7 +68,7 @@ prefix. The page then shows a "Co-first author" badge and counts it toward the
 first-author total. A typo'd ID is warned about on the next fetch rather than silently
 ignored.
 
-Currently 13 first-author papers: 11 sole-first and 2 shared.
+Currently 14 first-author papers: 11 sole-first and 3 shared.
 
 ## Notes on the numbers
 

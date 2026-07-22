@@ -21,6 +21,7 @@
   "_comment_co_first": "Shared first authorship is declared in the paper itself ('these authors contributed equally') and appears in NO bibliographic API - not OpenAlex, not ORCID, not Crossref. Author order alone cannot distinguish a co-first author from a second author, so these must be listed by hand. Add the OpenAlex work ID here when a paper names you as co-first. Confirmed by LF 2026-07-22.",
   "co_first_author_works": [
     { "id": "W4401026903", "note": "MotifQuest (JASMS 2024) - co-first with Tina C. Dang" },
-    { "id": "W4393285660", "note": "An Updated Guide to the Crustacean Neuropeptidome (Methods Mol. Biol. 2024) - co-first with Wenxin Wu" }
+    { "id": "W4393285660", "note": "An Updated Guide to the Crustacean Neuropeptidome (Methods Mol. Biol. 2024) - co-first with Wenxin Wu" },
+    { "id": "W4412835683", "note": "cNPDB (bioRxiv 2025) - three co-first authors: Vu Ngoc Huong Tran, Thao Duong, and Lauren Fields" }
   ]
 }

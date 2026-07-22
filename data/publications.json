@@ -136,8 +136,8 @@
                     ],
         "author_count":  6,
         "position":  "middle",
-        "is_co_first":  false,
-        "leads":  false,
+        "is_co_first":  true,
+        "leads":  true,
         "citations":  4,
         "by_year":  [
                         {
