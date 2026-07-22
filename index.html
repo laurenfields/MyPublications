@@ -106,6 +106,23 @@
   details.table-view th:first-child, details.table-view td:first-child { text-align: left; }
   details.table-view th { color: var(--muted); font-weight: 600; }
 
+  /* ---- Collaborator network ---- */
+  .netcard { margin-bottom: 48px; }
+  .net { cursor: grab; }
+  .net.dragging { cursor: grabbing; }
+  .net .link { stroke: var(--axis); stroke-linecap: round; }
+  .net .node { cursor: pointer; }
+  .net .nlabel { font-size: 10.5px; fill: var(--text-secondary); paint-order: stroke;
+                 stroke: var(--surface-1); stroke-width: 3px; stroke-linejoin: round; }
+  .net .nlabel.big { font-size: 12px; font-weight: 650; fill: var(--text-primary); }
+  .net .faded { opacity: .13; }
+  .nethint { font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px;
+                 font-size: 12.5px; color: var(--text-secondary); }
+  .legend i { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+
   .tip { position: fixed; pointer-events: none; z-index: 20; background: var(--surface-1);
          border: 1px solid var(--border); border-radius: 7px; padding: 7px 10px;
          font-size: 12px; color: var(--text-primary); box-shadow: 0 3px 14px rgba(0,0,0,.14);
@@ -182,6 +199,20 @@
         <table id="pubsTable"></table>
       </details>
     </div>
+  </section>
+
+  <section class="card netcard">
+    <h2>Collaborator network</h2>
+    <p class="sub" id="netSub"></p>
+    <div id="netLegend" class="legend"></div>
+    <svg class="chart net" id="netChart" role="img" aria-labelledby="netDesc">
+      <desc id="netDesc"></desc>
+    </svg>
+    <p class="nethint">Hover a bubble to trace who someone works with · drag to rearrange</p>
+    <details class="table-view">
+      <summary>Show data table</summary>
+      <table id="netTable"></table>
+    </details>
   </section>
 
   <section>
@@ -1093,11 +1124,1828 @@
                            }
                        ]
 }</script>
+<script id="netdata" type="application/json">{
+    "generated_utc":  "2026-07-22T17:33:07Z",
+    "center":  "Lauren Fields",
+    "advisor":  "Lingjun Li",
+    "node_count":  57,
+    "link_count":  220,
+    "max_colored":  4,
+    "clusters":  [
+                     {
+                         "key":  "Haiyan Lu",
+                         "name":  "Li lab — MS \u0026 proteomics",
+                         "auto_name":  "Spectrometry \u0026 Mass",
+                         "size":  25,
+                         "papers":  61,
+                         "top":  "Lingjun Li",
+                         "color_slot":  1
+                     },
+                     {
+                         "key":  "Whitney R. Craig",
+                         "name":  "Undergraduate antibacterial work",
+                         "auto_name":  "Aeruginosa \u0026 Against",
+                         "size":  8,
+                         "papers":  10,
+                         "top":  "Amanda L. Wolfe",
+                         "color_slot":  2
+                     },
+                     {
+                         "key":  "Tina C. Dang",
+                         "name":  "Neuropeptide software \u0026 EndoGenius",
+                         "auto_name":  "Endogenous \u0026 Endogenius",
+                         "size":  5,
+                         "papers":  16,
+                         "top":  "Tina C. Dang",
+                         "color_slot":  3
+                     },
+                     {
+                         "key":  "Fabao Liu",
+                         "name":  "PTMs — citrullination \u0026 methylarginine",
+                         "auto_name":  "Arginine \u0026 Asymmetric",
+                         "size":  5,
+                         "papers":  8,
+                         "top":  "M Ma",
+                         "color_slot":  4
+                     },
+                     {
+                         "key":  "Austin V. Carr",
+                         "name":  "DIA method development",
+                         "auto_name":  "Crustacean \u0026 Acquisition",
+                         "size":  4,
+                         "papers":  6,
+                         "top":  "Ashley Phetsanthad",
+                         "color_slot":  0
+                     },
+                     {
+                         "key":  "Margot Beaver",
+                         "name":  "cNPDB \u0026 crustacean neuropeptides",
+                         "auto_name":  "Neuropeptide \u0026 Crustacean",
+                         "size":  4,
+                         "papers":  7,
+                         "top":  "Vu Ngoc Huong Tran",
+                         "color_slot":  0
+                     },
+                     {
+                         "key":  "Nhu Q. Vu",
+                         "name":  "HyPep \u0026 peptide discovery",
+                         "auto_name":  "Discovery \u0026 Homology",
+                         "size":  3,
+                         "papers":  5,
+                         "top":  "Hsu-Ching Yen",
+                         "color_slot":  0
+                     },
+                     {
+                         "key":  "Elliot Patrenets",
+                         "name":  "Mass spectrometry imaging",
+                         "auto_name":  "Annotation \u0026 Imaging",
+                         "size":  3,
+                         "papers":  3,
+                         "top":  "Alexis Adrián",
+                         "color_slot":  0
+                     }
+                 ],
+    "nodes":  [
+                  {
+                      "id":  "Lingjun Li",
+                      "name":  "Lingjun Li",
+                      "papers":  21,
+                      "citations":  255,
+                      "first_year":  2022,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  true
+                  },
+                  {
+                      "id":  "Tina C. Dang",
+                      "name":  "Tina C. Dang",
+                      "papers":  7,
+                      "citations":  34,
+                      "first_year":  2024,
+                      "last_year":  2026,
+                      "cluster":  "Tina C. Dang",
+                      "color_slot":  3,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Haiyan Lu",
+                      "name":  "Haiyan Lu",
+                      "papers":  5,
+                      "citations":  153,
+                      "first_year":  2023,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Bin Wang",
+                      "name":  "Bin Wang",
+                      "papers":  4,
+                      "citations":  47,
+                      "first_year":  2022,
+                      "last_year":  2024,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Hua Zhang",
+                      "name":  "Hua Zhang",
+                      "papers":  3,
+                      "citations":  139,
+                      "first_year":  2023,
+                      "last_year":  2024,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Kendra G. Selby",
+                      "name":  "Kendra G. Selby",
+                      "papers":  3,
+                      "citations":  0,
+                      "first_year":  2026,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "M Ma",
+                      "name":  "M Ma",
+                      "papers":  3,
+                      "citations":  34,
+                      "first_year":  2023,
+                      "last_year":  2024,
+                      "cluster":  "Fabao Liu",
+                      "color_slot":  4,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Mitchell Gray",
+                      "name":  "Mitchell Gray",
+                      "papers":  3,
+                      "citations":  14,
+                      "first_year":  2024,
+                      "last_year":  2025,
+                      "cluster":  "Tina C. Dang",
+                      "color_slot":  3,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Vu Ngoc Huong Tran",
+                      "name":  "Vu Ngoc Huong Tran",
+                      "papers":  3,
+                      "citations":  17,
+                      "first_year":  2025,
+                      "last_year":  2026,
+                      "cluster":  "Margot Beaver",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Wenxin Wu",
+                      "name":  "Wenxin Wu",
+                      "papers":  3,
+                      "citations":  17,
+                      "first_year":  2024,
+                      "last_year":  2025,
+                      "cluster":  "Tina C. Dang",
+                      "color_slot":  3,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Zexin Zhu",
+                      "name":  "Zexin Zhu",
+                      "papers":  3,
+                      "citations":  41,
+                      "first_year":  2023,
+                      "last_year":  2024,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Amanda L. Wolfe",
+                      "name":  "Amanda L. Wolfe",
+                      "papers":  2,
+                      "citations":  4,
+                      "first_year":  2019,
+                      "last_year":  2020,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Angel Erbey Ibarra",
+                      "name":  "Angel Erbey Ibarra",
+                      "papers":  2,
+                      "citations":  15,
+                      "first_year":  2025,
+                      "last_year":  2025,
+                      "cluster":  "Tina C. Dang",
+                      "color_slot":  3,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Ashley Phetsanthad",
+                      "name":  "Ashley Phetsanthad",
+                      "papers":  2,
+                      "citations":  27,
+                      "first_year":  2023,
+                      "last_year":  2024,
+                      "cluster":  "Austin V. Carr",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Hannah N. Miles",
+                      "name":  "Hannah N. Miles",
+                      "papers":  2,
+                      "citations":  10,
+                      "first_year":  2023,
+                      "last_year":  2025,
+                      "cluster":  "Fabao Liu",
+                      "color_slot":  4,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Hsu-Ching Yen",
+                      "name":  "Hsu-Ching Yen",
+                      "papers":  2,
+                      "citations":  22,
+                      "first_year":  2023,
+                      "last_year":  2024,
+                      "cluster":  "Nhu Q. Vu",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Kellen DeLaney",
+                      "name":  "Kellen DeLaney",
+                      "papers":  2,
+                      "citations":  15,
+                      "first_year":  2024,
+                      "last_year":  2024,
+                      "cluster":  "Austin V. Carr",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Nhu Q. Vu",
+                      "name":  "Nhu Q. Vu",
+                      "papers":  2,
+                      "citations":  22,
+                      "first_year":  2023,
+                      "last_year":  2024,
+                      "cluster":  "Nhu Q. Vu",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Thao Duong",
+                      "name":  "Thao Duong",
+                      "papers":  2,
+                      "citations":  4,
+                      "first_year":  2025,
+                      "last_year":  2026,
+                      "cluster":  "Margot Beaver",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Tong Gao",
+                      "name":  "Tong Gao",
+                      "papers":  2,
+                      "citations":  0,
+                      "first_year":  2026,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Whitney R. Craig",
+                      "name":  "Whitney R. Craig",
+                      "papers":  2,
+                      "citations":  4,
+                      "first_year":  2019,
+                      "last_year":  2020,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Xudong Shi",
+                      "name":  "Xudong Shi",
+                      "papers":  2,
+                      "citations":  118,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Yuan Liu",
+                      "name":  "Yuan Liu",
+                      "papers":  2,
+                      "citations":  118,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Alexis Adrián",
+                      "name":  "Alexis Adrián",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2025,
+                      "last_year":  2025,
+                      "cluster":  "Elliot Patrenets",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Amanda R. Buchberger",
+                      "name":  "Amanda R. Buchberger",
+                      "papers":  1,
+                      "citations":  3,
+                      "first_year":  2024,
+                      "last_year":  2024,
+                      "cluster":  "Austin V. Carr",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Andrew J. Schneider",
+                      "name":  "Andrew J. Schneider",
+                      "papers":  1,
+                      "citations":  99,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Angel E. Ibarra",
+                      "name":  "Angel E. Ibarra",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2026,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Austin V. Carr",
+                      "name":  "Austin V. Carr",
+                      "papers":  1,
+                      "citations":  15,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Austin V. Carr",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "CATHERINE F. ALLEN",
+                      "name":  "CATHERINE F. ALLEN",
+                      "papers":  1,
+                      "citations":  1,
+                      "first_year":  2020,
+                      "last_year":  2020,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Clair A. Huffine",
+                      "name":  "Clair A. Huffine",
+                      "papers":  1,
+                      "citations":  1,
+                      "first_year":  2020,
+                      "last_year":  2020,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Danqing Wang",
+                      "name":  "Danqing Wang",
+                      "papers":  1,
+                      "citations":  19,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Elliot Patrenets",
+                      "name":  "Elliot Patrenets",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2025,
+                      "last_year":  2025,
+                      "cluster":  "Elliot Patrenets",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Eui‐Jun Kim",
+                      "name":  "Eui‐Jun Kim",
+                      "papers":  1,
+                      "citations":  10,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Fabao Liu",
+                      "color_slot":  4,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Fabao Liu",
+                      "name":  "Fabao Liu",
+                      "papers":  1,
+                      "citations":  10,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Fabao Liu",
+                      "color_slot":  4,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Henrik Zetterberg",
+                      "name":  "Henrik Zetterberg",
+                      "papers":  1,
+                      "citations":  19,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Jacob C. Chappell",
+                      "name":  "Jacob C. Chappell",
+                      "papers":  1,
+                      "citations":  1,
+                      "first_year":  2020,
+                      "last_year":  2020,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Jacob T. Shumate",
+                      "name":  "Jacob T. Shumate",
+                      "papers":  1,
+                      "citations":  1,
+                      "first_year":  2020,
+                      "last_year":  2020,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Jiangrong Qin",
+                      "name":  "Jiangrong Qin",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2026,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Kosta Tourlouskis",
+                      "name":  "Kosta Tourlouskis",
+                      "papers":  1,
+                      "citations":  4,
+                      "first_year":  2025,
+                      "last_year":  2025,
+                      "cluster":  "Margot Beaver",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Leah M. Bouthillette",
+                      "name":  "Leah M. Bouthillette",
+                      "papers":  1,
+                      "citations":  1,
+                      "first_year":  2020,
+                      "last_year":  2020,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Luigi Puglielli",
+                      "name":  "Luigi Puglielli",
+                      "papers":  1,
+                      "citations":  99,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Margot Beaver",
+                      "name":  "Margot Beaver",
+                      "papers":  1,
+                      "citations":  4,
+                      "first_year":  2025,
+                      "last_year":  2025,
+                      "cluster":  "Margot Beaver",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Meghan M. Hayes",
+                      "name":  "Meghan M. Hayes",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2026,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Miriam A. Shelef",
+                      "name":  "Miriam A. Shelef",
+                      "papers":  1,
+                      "citations":  6,
+                      "first_year":  2024,
+                      "last_year":  2024,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Miyang Li",
+                      "name":  "Miyang Li",
+                      "papers":  1,
+                      "citations":  19,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Nathan V. Welham",
+                      "name":  "Nathan V. Welham",
+                      "papers":  1,
+                      "citations":  99,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Paul Corsetti",
+                      "name":  "Paul Corsetti",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2026,
+                      "last_year":  2026,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Penghsuan Huang",
+                      "name":  "Penghsuan Huang",
+                      "papers":  1,
+                      "citations":  99,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Sally A. Wasileski",
+                      "name":  "Sally A. Wasileski",
+                      "papers":  1,
+                      "citations":  3,
+                      "first_year":  2019,
+                      "last_year":  2019,
+                      "cluster":  "Whitney R. Craig",
+                      "color_slot":  2,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Satirtha Saha Protya",
+                      "name":  "Satirtha Saha Protya",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2025,
+                      "last_year":  2025,
+                      "cluster":  "Tina C. Dang",
+                      "color_slot":  3,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Wei Xu",
+                      "name":  "Wei Xu",
+                      "papers":  1,
+                      "citations":  10,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Fabao Liu",
+                      "color_slot":  4,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Weifeng Cao",
+                      "name":  "Weifeng Cao",
+                      "papers":  1,
+                      "citations":  10,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Nhu Q. Vu",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "William A. Ricke",
+                      "name":  "William A. Ricke",
+                      "papers":  1,
+                      "citations":  0,
+                      "first_year":  2025,
+                      "last_year":  2025,
+                      "cluster":  "Elliot Patrenets",
+                      "color_slot":  0,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Xiaofang Zhong",
+                      "name":  "Xiaofang Zhong",
+                      "papers":  1,
+                      "citations":  14,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Xindi Tang",
+                      "name":  "Xindi Tang",
+                      "papers":  1,
+                      "citations":  99,
+                      "first_year":  2023,
+                      "last_year":  2023,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Yatao Shi",
+                      "name":  "Yatao Shi",
+                      "papers":  1,
+                      "citations":  6,
+                      "first_year":  2024,
+                      "last_year":  2024,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  },
+                  {
+                      "id":  "Zihui Li",
+                      "name":  "Zihui Li",
+                      "papers":  1,
+                      "citations":  6,
+                      "first_year":  2024,
+                      "last_year":  2024,
+                      "cluster":  "Haiyan Lu",
+                      "color_slot":  1,
+                      "is_advisor":  false
+                  }
+              ],
+    "links":  [
+                  {
+                      "source":  "Alexis Adrián",
+                      "target":  "Elliot Patrenets",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Alexis Adrián",
+                      "target":  "Hannah N. Miles",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Alexis Adrián",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Alexis Adrián",
+                      "target":  "William A. Ricke",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda L. Wolfe",
+                      "target":  "CATHERINE F. ALLEN",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda L. Wolfe",
+                      "target":  "Clair A. Huffine",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda L. Wolfe",
+                      "target":  "Jacob C. Chappell",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda L. Wolfe",
+                      "target":  "Jacob T. Shumate",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda L. Wolfe",
+                      "target":  "Leah M. Bouthillette",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda L. Wolfe",
+                      "target":  "Sally A. Wasileski",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda L. Wolfe",
+                      "target":  "Whitney R. Craig",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Amanda R. Buchberger",
+                      "target":  "Kellen DeLaney",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda R. Buchberger",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Amanda R. Buchberger",
+                      "target":  "Wenxin Wu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Haiyan Lu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Hua Zhang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Luigi Puglielli",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Nathan V. Welham",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Penghsuan Huang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Xindi Tang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Andrew J. Schneider",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel E. Ibarra",
+                      "target":  "Haiyan Lu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel E. Ibarra",
+                      "target":  "Jiangrong Qin",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel E. Ibarra",
+                      "target":  "Kendra G. Selby",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel E. Ibarra",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel E. Ibarra",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel E. Ibarra",
+                      "target":  "Tong Gao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel Erbey Ibarra",
+                      "target":  "Lingjun Li",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Angel Erbey Ibarra",
+                      "target":  "Mitchell Gray",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel Erbey Ibarra",
+                      "target":  "Tina C. Dang",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Angel Erbey Ibarra",
+                      "target":  "Vu Ngoc Huong Tran",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Angel Erbey Ibarra",
+                      "target":  "Wenxin Wu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Ashley Phetsanthad",
+                      "target":  "Austin V. Carr",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Ashley Phetsanthad",
+                      "target":  "Kellen DeLaney",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Ashley Phetsanthad",
+                      "target":  "Lingjun Li",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Ashley Phetsanthad",
+                      "target":  "M Ma",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Austin V. Carr",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Danqing Wang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Haiyan Lu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Henrik Zetterberg",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Hua Zhang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Lingjun Li",
+                      "weight":  4
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Miriam A. Shelef",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Miyang Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Xiaofang Zhong",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Yatao Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Zexin Zhu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Bin Wang",
+                      "target":  "Zihui Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "CATHERINE F. ALLEN",
+                      "target":  "Clair A. Huffine",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "CATHERINE F. ALLEN",
+                      "target":  "Jacob C. Chappell",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "CATHERINE F. ALLEN",
+                      "target":  "Jacob T. Shumate",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "CATHERINE F. ALLEN",
+                      "target":  "Leah M. Bouthillette",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "CATHERINE F. ALLEN",
+                      "target":  "Whitney R. Craig",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Clair A. Huffine",
+                      "target":  "Jacob C. Chappell",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Clair A. Huffine",
+                      "target":  "Jacob T. Shumate",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Clair A. Huffine",
+                      "target":  "Leah M. Bouthillette",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Clair A. Huffine",
+                      "target":  "Whitney R. Craig",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Danqing Wang",
+                      "target":  "Haiyan Lu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Danqing Wang",
+                      "target":  "Henrik Zetterberg",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Danqing Wang",
+                      "target":  "Hua Zhang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Danqing Wang",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Danqing Wang",
+                      "target":  "Miyang Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Danqing Wang",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Danqing Wang",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Elliot Patrenets",
+                      "target":  "Hannah N. Miles",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Elliot Patrenets",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Elliot Patrenets",
+                      "target":  "William A. Ricke",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Eui‐Jun Kim",
+                      "target":  "Fabao Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Eui‐Jun Kim",
+                      "target":  "Hannah N. Miles",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Eui‐Jun Kim",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Eui‐Jun Kim",
+                      "target":  "M Ma",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Eui‐Jun Kim",
+                      "target":  "Wei Xu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Fabao Liu",
+                      "target":  "Hannah N. Miles",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Fabao Liu",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Fabao Liu",
+                      "target":  "M Ma",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Fabao Liu",
+                      "target":  "Wei Xu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Henrik Zetterberg",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Hua Zhang",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Jiangrong Qin",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Kendra G. Selby",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Lingjun Li",
+                      "weight":  5
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Luigi Puglielli",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Miyang Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Nathan V. Welham",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Penghsuan Huang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Tong Gao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Xiaofang Zhong",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Xindi Tang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Xudong Shi",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Yuan Liu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Haiyan Lu",
+                      "target":  "Zexin Zhu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Hannah N. Miles",
+                      "target":  "Lingjun Li",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Hannah N. Miles",
+                      "target":  "M Ma",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hannah N. Miles",
+                      "target":  "Wei Xu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hannah N. Miles",
+                      "target":  "William A. Ricke",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Henrik Zetterberg",
+                      "target":  "Hua Zhang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Henrik Zetterberg",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Henrik Zetterberg",
+                      "target":  "Miyang Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Henrik Zetterberg",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Henrik Zetterberg",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hsu-Ching Yen",
+                      "target":  "Lingjun Li",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Hsu-Ching Yen",
+                      "target":  "M Ma",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hsu-Ching Yen",
+                      "target":  "Mitchell Gray",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hsu-Ching Yen",
+                      "target":  "Nhu Q. Vu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Hsu-Ching Yen",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hsu-Ching Yen",
+                      "target":  "Weifeng Cao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hsu-Ching Yen",
+                      "target":  "Wenxin Wu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Lingjun Li",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Luigi Puglielli",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Miyang Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Nathan V. Welham",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Penghsuan Huang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Xindi Tang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Xudong Shi",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Yuan Liu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Hua Zhang",
+                      "target":  "Zexin Zhu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jacob C. Chappell",
+                      "target":  "Jacob T. Shumate",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jacob C. Chappell",
+                      "target":  "Leah M. Bouthillette",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jacob C. Chappell",
+                      "target":  "Whitney R. Craig",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jacob T. Shumate",
+                      "target":  "Leah M. Bouthillette",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jacob T. Shumate",
+                      "target":  "Whitney R. Craig",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jiangrong Qin",
+                      "target":  "Kendra G. Selby",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jiangrong Qin",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jiangrong Qin",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Jiangrong Qin",
+                      "target":  "Tong Gao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kellen DeLaney",
+                      "target":  "Lingjun Li",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Kellen DeLaney",
+                      "target":  "M Ma",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kellen DeLaney",
+                      "target":  "Wenxin Wu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kendra G. Selby",
+                      "target":  "Lingjun Li",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Kendra G. Selby",
+                      "target":  "Meghan M. Hayes",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kendra G. Selby",
+                      "target":  "Paul Corsetti",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kendra G. Selby",
+                      "target":  "Thao Duong",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kendra G. Selby",
+                      "target":  "Tina C. Dang",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Kendra G. Selby",
+                      "target":  "Tong Gao",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Kendra G. Selby",
+                      "target":  "Vu Ngoc Huong Tran",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kosta Tourlouskis",
+                      "target":  "Lingjun Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kosta Tourlouskis",
+                      "target":  "Margot Beaver",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kosta Tourlouskis",
+                      "target":  "Thao Duong",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Kosta Tourlouskis",
+                      "target":  "Vu Ngoc Huong Tran",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Leah M. Bouthillette",
+                      "target":  "Whitney R. Craig",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Luigi Puglielli",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "M Ma",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Margot Beaver",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Meghan M. Hayes",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Miriam A. Shelef",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Mitchell Gray",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Miyang Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Nathan V. Welham",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Nhu Q. Vu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Paul Corsetti",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Penghsuan Huang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Satirtha Saha Protya",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Thao Duong",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Tina C. Dang",
+                      "weight":  7
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Tong Gao",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Vu Ngoc Huong Tran",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Wei Xu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Weifeng Cao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Wenxin Wu",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "William A. Ricke",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Xiaofang Zhong",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Xindi Tang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Xudong Shi",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Yatao Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Yuan Liu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Zexin Zhu",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Lingjun Li",
+                      "target":  "Zihui Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Luigi Puglielli",
+                      "target":  "Nathan V. Welham",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Luigi Puglielli",
+                      "target":  "Penghsuan Huang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Luigi Puglielli",
+                      "target":  "Xindi Tang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Luigi Puglielli",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Luigi Puglielli",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "M Ma",
+                      "target":  "Mitchell Gray",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "M Ma",
+                      "target":  "Nhu Q. Vu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "M Ma",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "M Ma",
+                      "target":  "Wei Xu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "M Ma",
+                      "target":  "Wenxin Wu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Margot Beaver",
+                      "target":  "Thao Duong",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Margot Beaver",
+                      "target":  "Vu Ngoc Huong Tran",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Meghan M. Hayes",
+                      "target":  "Paul Corsetti",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Meghan M. Hayes",
+                      "target":  "Tong Gao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Miriam A. Shelef",
+                      "target":  "Yatao Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Miriam A. Shelef",
+                      "target":  "Zexin Zhu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Miriam A. Shelef",
+                      "target":  "Zihui Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Mitchell Gray",
+                      "target":  "Nhu Q. Vu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Mitchell Gray",
+                      "target":  "Satirtha Saha Protya",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Mitchell Gray",
+                      "target":  "Tina C. Dang",
+                      "weight":  3
+                  },
+                  {
+                      "source":  "Mitchell Gray",
+                      "target":  "Wenxin Wu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Miyang Li",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Miyang Li",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Nathan V. Welham",
+                      "target":  "Penghsuan Huang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Nathan V. Welham",
+                      "target":  "Xindi Tang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Nathan V. Welham",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Nathan V. Welham",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Nhu Q. Vu",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Nhu Q. Vu",
+                      "target":  "Weifeng Cao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Nhu Q. Vu",
+                      "target":  "Wenxin Wu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Paul Corsetti",
+                      "target":  "Tong Gao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Penghsuan Huang",
+                      "target":  "Xindi Tang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Penghsuan Huang",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Penghsuan Huang",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Sally A. Wasileski",
+                      "target":  "Whitney R. Craig",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Satirtha Saha Protya",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Thao Duong",
+                      "target":  "Tina C. Dang",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Thao Duong",
+                      "target":  "Vu Ngoc Huong Tran",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Tina C. Dang",
+                      "target":  "Tong Gao",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Tina C. Dang",
+                      "target":  "Vu Ngoc Huong Tran",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Tina C. Dang",
+                      "target":  "Wenxin Wu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Xiaofang Zhong",
+                      "target":  "Zexin Zhu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Xindi Tang",
+                      "target":  "Xudong Shi",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Xindi Tang",
+                      "target":  "Yuan Liu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Xudong Shi",
+                      "target":  "Yuan Liu",
+                      "weight":  2
+                  },
+                  {
+                      "source":  "Yatao Shi",
+                      "target":  "Zexin Zhu",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Yatao Shi",
+                      "target":  "Zihui Li",
+                      "weight":  1
+                  },
+                  {
+                      "source":  "Zexin Zhu",
+                      "target":  "Zihui Li",
+                      "weight":  1
+                  }
+              ]
+}</script>
 <script>
 (function () {
   "use strict";
   var PUBS = JSON.parse(document.getElementById('pubdata').textContent);
   var S    = JSON.parse(document.getElementById('sumdata').textContent);
+  // Note: do NOT name this after a build placeholder token - Build-Site.ps1 replaces
+  // those globally across the file, identifiers included.
+  var netEl   = document.getElementById('netdata');
+  var NETDATA = netEl ? JSON.parse(netEl.textContent) : null;
   var SVGNS = 'http://www.w3.org/2000/svg';
   var tip = document.getElementById('tip');
 
@@ -1284,6 +3132,272 @@
       rows += '<tr><td>' + d.year + '</td><td>' + d.papers + '</td><td>' + d.citations + '</td></tr>';
     });
     document.getElementById('pubsTable').innerHTML = rows;
+  })();
+
+  // ---- Collaborator network --------------------------------------------
+  // A small force simulation, run to completion before the first paint. Initial
+  // positions are seeded from each node's index on a circle rather than from
+  // Math.random(), so the layout is identical on every load - a network that
+  // rearranged itself each visit would be unreadable for anyone returning to it.
+  (function drawNetwork() {
+    var NET = NETDATA;
+    if (!NET || !NET.nodes || !NET.nodes.length) return;
+
+    var svg = document.getElementById('netChart');
+    var W = 760, H = 560, CX = W / 2, CY = H / 2;
+    var selfX = CX, selfY = CY, selfR = 21;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    // Palette slots 1-4 plus a neutral for everything folded into "Other".
+    var isDark = matchMedia('(prefers-color-scheme: dark)').matches &&
+                 document.documentElement.getAttribute('data-theme') !== 'light' ||
+                 document.documentElement.getAttribute('data-theme') === 'dark';
+    var SLOTS = isDark
+      ? ['#898781', '#3987e5', '#008300', '#d55181', '#c98500']
+      : ['#898781', '#2a78d6', '#008300', '#e87ba4', '#eda100'];
+    function slotColor(s) { return SLOTS[s] || SLOTS[0]; }
+
+    var maxPapers = Math.max.apply(null, NET.nodes.map(function (n) { return n.papers; }));
+    function radius(p) { return 5 + 15 * Math.sqrt(p / maxPapers); }
+
+    // Build the simulation graph: collaborators only. The author is pinned at the
+    // centre and drawn without spokes - they share every paper here by definition,
+    // so 57 identical edges would add ink and no information.
+    var byId = {};
+    var nodes = NET.nodes.map(function (n, i) {
+      var ang = (i / NET.nodes.length) * Math.PI * 2;
+      var ring = 90 + (i % 7) * 26;
+      var o = {
+        id: n.id, name: n.name, papers: n.papers, citations: n.citations,
+        cluster: n.cluster, slot: n.color_slot, advisor: n.is_advisor,
+        first_year: n.first_year, last_year: n.last_year,
+        r: radius(n.papers),
+        x: CX + Math.cos(ang) * ring, y: CY + Math.sin(ang) * ring,
+        vx: 0, vy: 0, fixed: false
+      };
+      byId[n.id] = o;
+      return o;
+    });
+    var links = NET.links.map(function (l) {
+      return { s: byId[l.source], t: byId[l.target], w: l.weight };
+    }).filter(function (l) { return l.s && l.t; });
+
+    // Adjacency, for the hover highlight.
+    var nbrs = {};
+    nodes.forEach(function (n) { nbrs[n.id] = {}; });
+    links.forEach(function (l) { nbrs[l.s.id][l.t.id] = true; nbrs[l.t.id][l.s.id] = true; });
+
+    function tick(alpha) {
+      // Repulsion - O(n^2) is fine at this size and avoids a quadtree.
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var a = nodes[i], b = nodes[j];
+          var dx = b.x - a.x, dy = b.y - a.y;
+          var d2 = dx * dx + dy * dy || 0.01;
+          var d = Math.sqrt(d2);
+          var minD = a.r + b.r + 9;
+          // Strong short-range push keeps bubbles from overlapping; the softer
+          // long-range term spreads clusters apart.
+          var f = (2600 / d2) * alpha;
+          if (d < minD) f += ((minD - d) / d) * 0.75 * alpha;
+          var ux = dx / d, uy = dy / d;
+          a.vx -= ux * f; a.vy -= uy * f;
+          b.vx += ux * f; b.vy += uy * f;
+        }
+      }
+      // Springs, shorter and stiffer for pairs who publish together often.
+      links.forEach(function (l) {
+        var dx = l.t.x - l.s.x, dy = l.t.y - l.s.y;
+        var d = Math.sqrt(dx * dx + dy * dy) || 0.01;
+        var rest = 96 - Math.min(l.w, 5) * 11;
+        var f = ((d - rest) / d) * 0.055 * Math.min(l.w, 4) * alpha;
+        l.s.vx += dx * f; l.s.vy += dy * f;
+        l.t.vx -= dx * f; l.t.vy -= dy * f;
+      });
+      // Gravity toward the author at the centre.
+      nodes.forEach(function (n) {
+        n.vx += (selfX - n.x) * 0.010 * alpha;
+        n.vy += (selfY - n.y) * 0.010 * alpha;
+        if (!n.fixed) {
+          n.vx *= 0.82; n.vy *= 0.82;
+          n.x += n.vx; n.y += n.vy;
+        }
+      });
+    }
+    for (var s = 0; s < 500; s++) { tick(Math.max(0.05, 1 - s / 500)); }
+
+    // Fit the settled layout to the frame. Clamping node positions during the
+    // simulation instead would flatten clusters against the edges; scaling once at
+    // the end preserves the shape the forces found and still fills the canvas.
+    (function fitToFrame() {
+      var pad = 30;
+      var minX = selfX - selfR, maxX = selfX + selfR;
+      var minY = selfY - selfR, maxY = selfY + selfR;
+      nodes.forEach(function (n) {
+        minX = Math.min(minX, n.x - n.r); maxX = Math.max(maxX, n.x + n.r);
+        minY = Math.min(minY, n.y - n.r); maxY = Math.max(maxY, n.y + n.r);
+      });
+      var bw = Math.max(maxX - minX, 1), bh = Math.max(maxY - minY, 1);
+      // Cap the zoom so a sparse network doesn't get blown up into absurd bubbles.
+      var k = Math.min((W - pad * 2) / bw, (H - pad * 2) / bh, 1.5);
+      var ox = (W - bw * k) / 2 - minX * k;
+      var oy = (H - bh * k) / 2 - minY * k;
+      nodes.forEach(function (n) { n.x = n.x * k + ox; n.y = n.y * k + oy; });
+      selfX = selfX * k + ox; selfY = selfY * k + oy;
+    })();
+
+    // ---- Render ----
+    var gLinks = el('g', {}), gNodes = el('g', {}), gLabels = el('g', {});
+    svg.appendChild(gLinks); svg.appendChild(gNodes); svg.appendChild(gLabels);
+
+    var linkEls = links.map(function (l) {
+      var e = el('line', { class: 'link', 'stroke-width': Math.min(0.6 + l.w * 0.55, 3),
+        'stroke-opacity': 0.5 });
+      gLinks.appendChild(e);
+      return e;
+    });
+
+    // The author: a pinned ring at the centre, visually distinct from collaborators.
+    var self = el('g', {});
+    self.appendChild(el('circle', { cx: selfX, cy: selfY, r: selfR, fill: 'var(--surface-1)',
+      stroke: 'var(--text-primary)', 'stroke-width': 2 }));
+    self.appendChild(el('text', { x: selfX, y: selfY + 4, 'text-anchor': 'middle',
+      class: 'nlabel big' }, S.name.split(' ')[0]));
+
+    var nodeEls = nodes.map(function (n) {
+      var g = el('g', { class: 'node' });
+      var c = el('circle', { r: n.r, fill: slotColor(n.slot), 'fill-opacity': 0.85,
+        stroke: 'var(--surface-1)', 'stroke-width': 2 });
+      // The advisor appears on nearly every paper; a ring marks that without
+      // letting the node's size swamp the rest of the layout.
+      if (n.advisor) { c.setAttribute('stroke', 'var(--text-primary)'); c.setAttribute('stroke-width', 2.5); }
+      g.appendChild(c);
+      gNodes.appendChild(g);
+      n.el = g; n.circle = c;
+      return g;
+    });
+
+    // Label only the people big enough to read - a name on all 57 is noise.
+    var labelled = nodes.filter(function (n) { return n.papers >= 3; });
+    var labelEls = labelled.map(function (n) {
+      var t = el('text', { class: 'nlabel', 'text-anchor': 'middle' },
+        n.name.length > 18 ? n.name.split(' ').slice(-1)[0] : n.name);
+      gLabels.appendChild(t);
+      n.label = t;
+      return t;
+    });
+
+    function position() {
+      links.forEach(function (l, i) {
+        linkEls[i].setAttribute('x1', l.s.x); linkEls[i].setAttribute('y1', l.s.y);
+        linkEls[i].setAttribute('x2', l.t.x); linkEls[i].setAttribute('y2', l.t.y);
+      });
+      nodes.forEach(function (n) { n.el.setAttribute('transform', 'translate(' + n.x + ',' + n.y + ')'); });
+
+      // Place labels most-prolific-first, hiding any that would collide with one
+      // already placed or with the author's node. An unreadable pile of overlapping
+      // names is worse than showing fewer of them.
+      var placed = [{ x: selfX - 30, y: selfY - 8, w: 60, h: 16 }];
+      labelled.forEach(function (n) {
+        var text = n.label.textContent;
+        var w = text.length * 5.8, h = 13;
+        var x = n.x - w / 2, y = n.y - n.r - 14;
+        var hit = placed.some(function (p) {
+          return x < p.x + p.w && x + w > p.x && y < p.y + p.h && y + h > p.y;
+        });
+        n.label.style.display = hit ? 'none' : '';
+        if (!hit) {
+          placed.push({ x: x, y: y, w: w, h: h });
+          n.label.setAttribute('x', n.x);
+          n.label.setAttribute('y', n.y - n.r - 5);
+        }
+      });
+    }
+    svg.appendChild(self);
+    position();
+
+    // ---- Hover: isolate a person and the people they publish with ----
+    function highlight(n) {
+      nodes.forEach(function (o) {
+        var on = !n || o.id === n.id || nbrs[n.id][o.id];
+        o.el.classList.toggle('faded', !on);
+        if (o.label) o.label.classList.toggle('faded', !on);
+      });
+      links.forEach(function (l, i) {
+        var on = !n || l.s.id === n.id || l.t.id === n.id;
+        linkEls[i].classList.toggle('faded', !on);
+      });
+    }
+    nodes.forEach(function (n) {
+      n.el.addEventListener('mouseenter', function () { highlight(n); });
+      n.el.addEventListener('mousemove', function (e) {
+        var shared = Object.keys(nbrs[n.id]).length;
+        showTip(e,
+          '<b>' + n.name + '</b>' + (n.advisor ? ' · advisor' : '') + '<br>' +
+          '<b>' + n.papers + '</b> paper' + (n.papers === 1 ? '' : 's') + ' with you · ' +
+          '<b>' + n.citations + '</b> citations<br>' +
+          n.first_year + (n.last_year !== n.first_year ? '–' + n.last_year : '') +
+          ' · connects to <b>' + shared + '</b> others');
+      });
+      n.el.addEventListener('mouseleave', function () { highlight(null); hideTip(); });
+    });
+
+    // ---- Drag ----
+    var drag = null;
+    function svgPoint(evt) {
+      var r = svg.getBoundingClientRect();
+      return { x: (evt.clientX - r.left) / r.width * W, y: (evt.clientY - r.top) / r.height * H };
+    }
+    nodes.forEach(function (n) {
+      n.el.addEventListener('pointerdown', function (e) {
+        drag = n; n.fixed = true; svg.classList.add('dragging');
+        svg.setPointerCapture(e.pointerId); e.preventDefault();
+      });
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var p = svgPoint(e);
+      drag.x = p.x; drag.y = p.y;
+      for (var k = 0; k < 6; k++) { tick(0.22); }
+      position();
+    });
+    svg.addEventListener('pointerup', function () {
+      if (drag) { drag.fixed = false; drag = null; }
+      svg.classList.remove('dragging');
+    });
+
+    // ---- Legend, caption, table ----
+    var legend = document.getElementById('netLegend');
+    NET.clusters.forEach(function (c) {
+      if (!c.color_slot) return;             // "Other" gets one combined entry below
+      var sp = document.createElement('span');
+      sp.innerHTML = '<i></i>' + c.name + ' (' + c.size + ')';
+      sp.querySelector('i').style.background = slotColor(c.color_slot);
+      legend.appendChild(sp);
+    });
+    var otherCount = NET.clusters.filter(function (c) { return !c.color_slot; })
+      .reduce(function (a, c) { return a + c.size; }, 0);
+    if (otherCount) {
+      var sp2 = document.createElement('span');
+      sp2.innerHTML = '<i></i>Other groups (' + otherCount + ')';
+      sp2.querySelector('i').style.background = SLOTS[0];
+      legend.appendChild(sp2);
+    }
+
+    document.getElementById('netSub').textContent =
+      NET.node_count + ' co-authors across ' + S.total_papers +
+      ' papers · bubble size is papers shared with you · grouped by research area';
+    document.getElementById('netDesc').textContent =
+      'Network of ' + NET.node_count + ' co-authors, grouped into research clusters, ' +
+      'with ' + NET.clusters[0].top + ' the most frequent collaborator.';
+
+    var rows = '<tr><th>Collaborator</th><th>Papers</th><th>Citations</th><th>Group</th></tr>';
+    NET.nodes.forEach(function (n) {
+      var cl = NET.clusters.filter(function (c) { return c.key === n.cluster; })[0];
+      rows += '<tr><td>' + esc(n.name) + '</td><td>' + n.papers + '</td><td>' +
+        n.citations + '</td><td>' + esc(cl ? cl.name : '—') + '</td></tr>';
+    });
+    document.getElementById('netTable').innerHTML = rows;
   })();
 
   // ---- Publication list ------------------------------------------------

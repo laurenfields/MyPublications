@@ -18,6 +18,20 @@
   "_comment_preprints": "bioRxiv entries are genuine standalone works, not preprints of the journal papers listed alongside them. In particular 'EndoGenius: Enabling comprehensive identification and quantitation' (bioRxiv 2025) is a sequel to 'EndoGenius: Optimized Neuropeptide Identification' (J. Proteome Res. 2024), not a preprint of it. Both are kept.",
   "preprint_venues": ["bioRxiv", "bioRxiv (Cold Spring Harbor Laboratory)", "arXiv", "ChemRxiv", "Research Square"],
 
+  "_comment_network": "Settings for the collaborator web. 'advisor' is drawn distinctly because a PI appears on nearly every paper and would otherwise dominate the force layout. 'cluster_labels' overrides auto-generated cluster names - the detector finds the groups reliably, but names them from title keywords, which sometimes need a human word.",
+  "advisor": "Lingjun Li",
+  "_comment_cluster_keys": "Keys are whichever member name the label-propagation pass converged on for that group - they are stable while the co-authorship structure is, but a new paper that bridges two groups can rename a key. Build-Network.ps1 warns when a key here matches no cluster, which means the auto-generated name is showing and this entry needs updating. The first four (by size) are the ones that get colour and appear in the legend; the rest show only in the data table.",
+  "cluster_labels": {
+    "Haiyan Lu":        "Li lab — MS & proteomics",
+    "Whitney R. Craig": "Undergraduate antibacterial work",
+    "Tina C. Dang":     "Neuropeptide software & EndoGenius",
+    "Fabao Liu":        "PTMs — citrullination & methylarginine",
+    "Austin V. Carr":   "DIA method development",
+    "Margot Beaver":    "cNPDB & crustacean neuropeptides",
+    "Nhu Q. Vu":        "HyPep & peptide discovery",
+    "Elliot Patrenets": "Mass spectrometry imaging"
+  },
+
   "_comment_co_first": "Shared first authorship is declared in the paper itself ('these authors contributed equally') and appears in NO bibliographic API - not OpenAlex, not ORCID, not Crossref. Author order alone cannot distinguish a co-first author from a second author, so these must be listed by hand. Add the OpenAlex work ID here when a paper names you as co-first. Confirmed by LF 2026-07-22.",
   "co_first_author_works": [
     { "id": "W4401026903", "note": "MotifQuest (JASMS 2024) - co-first with Tina C. Dang" },

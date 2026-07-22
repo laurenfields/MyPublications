@@ -27,10 +27,12 @@ won't show anything new.
 | `config/profile.json` | Your ORCID, display details, and the exclusion list. **Edit this**, not the scripts. |
 | `data/publications.json` | The 23 publications with per-year citation counts. Generated. |
 | `data/summary.json` | Totals, h-index, and the chart series. Generated. |
+| `data/network.json` | Collaborator graph: nodes, co-authorship edges, research clusters. Generated. |
 | `templates/page.html` | The page template. Edit for design changes, then rebuild. |
 | `scripts/Fetch-Publications.ps1` | Pulls from OpenAlex, applies exclusions, writes the data files. |
+| `scripts/Build-Network.ps1` | Derives the collaborator network and finds research clusters. |
 | `scripts/Build-Site.ps1` | Injects the data into the template, writes `index.html`. |
-| `scripts/Update-All.ps1` | Both of the above, plus optional publish. |
+| `scripts/Update-All.ps1` | All of the above, plus optional publish. |
 
 Everything under `data/` and `index.html` is generated — they're committed so the
 live site works without a build step, but never edit them by hand. Your edits go in
@@ -69,6 +71,34 @@ first-author total. A typo'd ID is warned about on the next fetch rather than si
 ignored.
 
 Currently 14 first-author papers: 11 sole-first and 3 shared.
+
+## The collaborator network
+
+57 co-authors, 220 co-authorship edges. Bubble size is papers shared with you; groups
+come from **weighted label propagation** run on the network itself — no external topic
+data. Hover isolates a person and everyone they publish with; drag rearranges.
+
+Two deliberate choices worth knowing:
+
+- **Clustering is deterministic.** Fixed node order, ties broken alphabetically, no
+  random seed. The same data always produces the same groups, and the force layout
+  seeds positions from node index rather than `Math.random()`, so the picture is
+  identical on every visit. A network that rearranged itself each load would be
+  unreadable to anyone returning to it.
+- **Only the four largest groups get colour.** The categorical palette validates
+  all-pairs for four slots; in a force layout any two bubbles can end up adjacent, so
+  a fifth and sixth hue would be indistinguishable under common colour-vision
+  deficiencies. The rest fold into a neutral "Other" — visible in the data table.
+
+Cluster names are auto-generated from title keywords, which produces things like
+"Aeruginosa & Against". Override them in `cluster_labels` in `config/profile.json`,
+keyed by cluster key (printed by `Build-Network.ps1` on every run). If a key stops
+matching — a new paper can bridge two groups and rename one — the script warns rather
+than quietly showing the keyword guess.
+
+Your advisor is set via `"advisor"` and handled specially: they appear on nearly every
+paper, so they are drawn with a ring and excluded from *propagating* a cluster label,
+which otherwise smears one group across the whole graph.
 
 ## Notes on the numbers
 

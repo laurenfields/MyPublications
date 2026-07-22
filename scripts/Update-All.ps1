@@ -37,6 +37,8 @@ $root = Split-Path -Parent $PSScriptRoot
 
 & (Join-Path $PSScriptRoot 'Fetch-Publications.ps1') -Email $Email
 Write-Host ""
+& (Join-Path $PSScriptRoot 'Build-Network.ps1')
+Write-Host ""
 & (Join-Path $PSScriptRoot 'Build-Site.ps1')
 
 if ($Publish) {
