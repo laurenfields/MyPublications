@@ -109,6 +109,13 @@ foreach ($id in $excluded.Keys) {
 $orcidUrl  = "https://orcid.org/$($cfg.orcid)"
 $preprints = @($cfg.preprint_venues)
 
+# Shared first authorship exists only in the paper's own text, never in the API, so it
+# comes from the config rather than from OpenAlex's author_position.
+$coFirst = @{}
+if ($cfg.PSObject.Properties.Name -contains 'co_first_author_works') {
+    foreach ($c in $cfg.co_first_author_works) { $coFirst[$c.id] = $true }
+}
+
 $pubs = foreach ($w in $kept) {
     $authors = @($w.authorships.author.display_name)
 
@@ -124,8 +131,16 @@ $pubs = foreach ($w in $kept) {
     $venue = $w.primary_location.source.display_name
     if (-not $venue) { $venue = 'Unpublished / no venue listed' }
 
-    # Titles arrive with HTML entities and stray inline markup from publisher feeds.
-    $title = [System.Net.WebUtility]::HtmlDecode(($w.title -replace '<[^>]+>', '')).Trim()
+    # Publisher feeds carry inline markup that reaches OpenAlex HTML-encoded, e.g.
+    # "&lt;i&gt;Aloe Vera&lt;/i&gt;". Decode first, THEN strip tags - stripping first
+    # matches nothing and the later decode leaves a literal <i> in the title.
+    $title = ([System.Net.WebUtility]::HtmlDecode($w.title) -replace '<[^>]+>', '').Trim()
+    # Collapse whitespace left behind by removed markup.
+    $title = $title -replace '\s{2,}', ' '
+
+    $shortId  = $w.id -replace 'https://openalex\.org/', ''
+    $isCoFirst = $coFirst.ContainsKey($shortId)
+    $position  = if ($me) { $me.author_position } else { $null }
 
     [pscustomobject]@{
         title       = $title
@@ -136,7 +151,10 @@ $pubs = foreach ($w in $kept) {
         url         = if ($w.doi) { $w.doi } else { $w.id }
         authors     = $authors
         author_count= $authors.Count
-        position    = if ($me) { $me.author_position } else { $null }
+        position    = $position
+        is_co_first = $isCoFirst
+        # True for sole-first and shared-first alike - what "first author" means on a CV.
+        leads       = ($position -eq 'first' -or $isCoFirst)
         citations   = $w.cited_by_count
         by_year     = @($w.counts_by_year | Sort-Object year |
                         ForEach-Object { [pscustomobject]@{ year = $_.year; count = $_.cited_by_count } })
@@ -148,6 +166,14 @@ $pubs = foreach ($w in $kept) {
 }
 
 $pubs = @($pubs | Sort-Object @{Expression='year';Descending=$true}, @{Expression='citations';Descending=$true})
+
+# A co-first ID that matches nothing is almost always a typo, and it would silently
+# undercount first authorships rather than erroring.
+foreach ($id in $coFirst.Keys) {
+    if ($pubs.openalex_id -notcontains "https://openalex.org/$id") {
+        Write-Warning "co_first_author_works entry $id matches no publication - check the ID in profile.json."
+    }
+}
 
 # --- Roll-up stats -----------------------------------------------------------
 # Citations received per calendar year, summed across every paper.
@@ -186,7 +212,8 @@ $summary = [pscustomobject]@{
     total_citations  = ($pubs | Measure-Object citations -Sum).Sum
     h_index          = $h
     i10_index        = @($pubs | Where-Object { $_.citations -ge 10 }).Count
-    first_author     = @($pubs | Where-Object { $_.position -eq 'first' }).Count
+    first_author     = @($pubs | Where-Object { $_.leads }).Count
+    co_first_author  = @($pubs | Where-Object { $_.is_co_first }).Count
     preprints        = @($pubs | Where-Object { $_.is_preprint }).Count
     open_access      = @($pubs | Where-Object { $_.open_access }).Count
     excluded_count   = $dropped.Count

@@ -50,6 +50,26 @@ warns that the entry can be retired.
 **When you publish something new**, it appears automatically — no config change needed.
 Only add to `excluded_works` if a paper that isn't yours shows up.
 
+## Co-first authorship
+
+Shared first authorship is declared in the paper itself ("these authors contributed
+equally") and appears in **no** bibliographic database — not OpenAlex, not ORCID, not
+Crossref. Author order alone can't tell a co-first author apart from a second author,
+so these are listed by hand in `config/profile.json`:
+
+```json
+"co_first_author_works": [
+  { "id": "W4401026903", "note": "MotifQuest (JASMS 2024) - co-first with Tina C. Dang" }
+]
+```
+
+Get the ID from the paper's `openalex_id` in `data/publications.json`, minus the URL
+prefix. The page then shows a "Co-first author" badge and counts it toward the
+first-author total. A typo'd ID is warned about on the next fetch rather than silently
+ignored.
+
+Currently 13 first-author papers: 11 sole-first and 2 shared.
+
 ## Notes on the numbers
 
 - **Citation counts are OpenAlex's**, and will read lower than Google Scholar, which

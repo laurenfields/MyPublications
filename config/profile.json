@@ -16,5 +16,11 @@
   ],
 
   "_comment_preprints": "bioRxiv entries are genuine standalone works, not preprints of the journal papers listed alongside them. In particular 'EndoGenius: Enabling comprehensive identification and quantitation' (bioRxiv 2025) is a sequel to 'EndoGenius: Optimized Neuropeptide Identification' (J. Proteome Res. 2024), not a preprint of it. Both are kept.",
-  "preprint_venues": ["bioRxiv", "bioRxiv (Cold Spring Harbor Laboratory)", "arXiv", "ChemRxiv", "Research Square"]
+  "preprint_venues": ["bioRxiv", "bioRxiv (Cold Spring Harbor Laboratory)", "arXiv", "ChemRxiv", "Research Square"],
+
+  "_comment_co_first": "Shared first authorship is declared in the paper itself ('these authors contributed equally') and appears in NO bibliographic API - not OpenAlex, not ORCID, not Crossref. Author order alone cannot distinguish a co-first author from a second author, so these must be listed by hand. Add the OpenAlex work ID here when a paper names you as co-first. Confirmed by LF 2026-07-22.",
+  "co_first_author_works": [
+    { "id": "W4401026903", "note": "MotifQuest (JASMS 2024) - co-first with Tina C. Dang" },
+    { "id": "W4393285660", "note": "An Updated Guide to the Crustacean Neuropeptidome (Methods Mol. Biol. 2024) - co-first with Wenxin Wu" }
+  ]
 }

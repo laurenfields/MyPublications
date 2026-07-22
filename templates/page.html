@@ -424,7 +424,10 @@
     d.className = 'pub';
     var badges = '';
     if (p.is_preprint) badges += '<span class="badge pre">Preprint</span>';
-    if (p.position === 'first') badges += '<span class="badge first">First author</span>';
+    // Co-first is shown as its own badge - it is a first authorship, but flattening it
+    // into "First author" would overstate the sole-first papers.
+    if (p.is_co_first)            badges += '<span class="badge first">Co-first author</span>';
+    else if (p.position === 'first') badges += '<span class="badge first">First author</span>';
     if (p.open_access && !p.is_preprint) badges += '<span class="badge oa">Open access</span>';
     var titleHtml = p.url
       ? '<a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.title) + '</a>'
@@ -456,6 +459,12 @@
     '<p>Citation counts are as reported by OpenAlex and will differ from Google Scholar, ' +
     'which indexes more sources. ' + S.excluded_count + ' works returned under this ORCID were ' +
     'excluded as misattributions or duplicate deposits.</p>' +
+    (S.co_first_author
+      ? '<p>The first-author count includes ' + S.co_first_author + ' shared first authorship' +
+        (S.co_first_author === 1 ? '' : 's') + ', badged individually above. Shared first ' +
+        'authorship is declared in the paper itself and is not recorded by any bibliographic ' +
+        'database, so it is maintained by hand.</p>'
+      : '') +
     '<p>Last updated ' + gen.toLocaleDateString(undefined,
       { year: 'numeric', month: 'long', day: 'numeric' }) + '.</p>';
 })();
