@@ -67,12 +67,32 @@ foreach ($w in $pubs) {
 }
 Write-Host "  $($people.Count) collaborators" -ForegroundColor DarkGray
 
+# --- Threshold ---------------------------------------------------------------
+# A force layout is O(n^2) per tick and unreadable past a few hundred nodes. For a
+# long career the graph has to be cut somewhere; cutting by shared-paper count keeps
+# the people who define the collaboration structure and drops one-off co-authors.
+# The cutoff is reported on the page so nothing is hidden silently.
+$minShared = 1
+if ($cfg.PSObject.Properties.Name -contains 'network_min_shared' -and $cfg.network_min_shared) {
+    $minShared = [int]$cfg.network_min_shared
+}
+$totalPeople = $people.Count
+if ($minShared -gt 1) {
+    $keep = @{}
+    foreach ($k in $people.Keys) { if ($people[$k].papers -ge $minShared) { $keep[$k] = $people[$k] } }
+    $people = $keep
+    Write-Host "  $($people.Count) shown (>= $minShared shared papers); $($totalPeople - $people.Count) below the cutoff" -ForegroundColor DarkYellow
+}
+if ($people.Count -eq 0) { throw "network_min_shared=$minShared excludes every collaborator." }
+
 # --- Edges -------------------------------------------------------------------
 # Weighted by number of papers two people share. The author's own edges are implicit
 # (they share every paper with everyone here) and are added at render time.
 $edgeW = @{}
 foreach ($w in $pubs) {
-    $a = @(@($w.authors) | Where-Object { $_ -notmatch $selfRe } | Sort-Object)
+    # Only among people who survived the threshold - an edge to a dropped node would
+    # dangle and break the layout.
+    $a = @(@($w.authors) | Where-Object { $_ -notmatch $selfRe -and $people.ContainsKey($_) } | Sort-Object)
     for ($i = 0; $i -lt $a.Count; $i++) {
         for ($j = $i + 1; $j -lt $a.Count; $j++) {
             $k = "$($a[$i])||$($a[$j])"
@@ -232,6 +252,9 @@ $net = [pscustomobject]@{
     advisor       = $advisor
     node_count    = @($nodes).Count
     link_count    = @($links).Count
+    min_shared    = $minShared
+    total_people  = $totalPeople
+    hidden_people = $totalPeople - @($nodes).Count
     max_colored   = $MAX_COLORED
     clusters      = @($clusters | Select-Object key, name, auto_name, size, papers, top,
                         @{Name='color_slot';Expression={$colorIndex[$_.key]}})

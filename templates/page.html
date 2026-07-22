@@ -62,6 +62,11 @@
     -webkit-font-smoothing: antialiased;
   }
   .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 72px; }
+  /* Titles in this field carry unbreakable tokens - peptide sequences like
+     VPNDWSKFQGSWamide, reagent names, "Electron-Transfer/Higher-Energy" - that
+     overflow narrow screens because there is nowhere to wrap. */
+  .pub .t, .pub .a, .pub .v, h1, .affil { overflow-wrap: anywhere; }
+  body { overflow-wrap: break-word; }
   a { color: var(--series); }
   a:hover { text-decoration: none; }
 
@@ -86,8 +91,10 @@
   /* ---- Charts ---- */
   .charts { display: grid; grid-template-columns: 1fr; gap: 28px; margin-bottom: 48px; }
   @media (min-width: 760px) { .charts { grid-template-columns: 1fr 1fr; } }
+  /* min-width:0 is required: a grid item defaults to min-width:auto, which refuses to
+     shrink below its content and defeats the overflow-x on .tablewrap inside it. */
   .card { background: var(--surface-1); border: 1px solid var(--border);
-          border-radius: 10px; padding: 20px; }
+          border-radius: 10px; padding: 20px; min-width: 0; }
   .card h2 { font-size: 15px; margin: 0 0 2px; font-weight: 600; }
   .card .sub { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
   .chart { width: 100%; height: auto; display: block; overflow: visible; touch-action: none; }
@@ -99,7 +106,13 @@
 
   details.table-view { margin-top: 14px; }
   details.table-view summary { font-size: 12px; color: var(--muted); cursor: pointer; }
-  details.table-view table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+  /* Wide tables scroll inside their own box; the page body must never scroll
+     sideways. The collaborator table has long names and overflows on narrow screens. */
+  .tablewrap { overflow-x: auto; margin-top: 10px; max-width: 100%; }
+  /* min-width keeps columns legible while the wrapper scrolls, instead of the table
+     crushing itself to fit and wrapping every cell to one character per line. */
+  details.table-view table { width: 100%; min-width: 260px; border-collapse: collapse; font-size: 12px; }
+  details.table-view td:first-child { min-width: 120px; }
   details.table-view th, details.table-view td {
     text-align: right; padding: 4px 6px; border-bottom: 1px solid var(--border);
     font-variant-numeric: tabular-nums; }
@@ -131,6 +144,15 @@
   .tip b { font-variant-numeric: tabular-nums; }
 
   /* ---- Publication list ---- */
+  .filterbar { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; }
+  .filterbar input { flex: 1; min-width: 0; font: inherit; font-size: 14px;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface-1); color: var(--text-primary); }
+  .filterbar input:focus { outline: 2px solid var(--series); outline-offset: -1px; }
+  .fcount { font-size: 12.5px; color: var(--muted); white-space: nowrap;
+    font-variant-numeric: tabular-nums; }
+  .nomatch { color: var(--muted); font-size: 14px; padding: 24px 0; }
+
   h2.section { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
   .section-sub { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
   .yr { font-size: 13px; font-weight: 650; color: var(--muted); letter-spacing: .06em;
@@ -184,7 +206,7 @@
       </svg>
       <details class="table-view">
         <summary>Show data table</summary>
-        <table id="growthTable"></table>
+        <div class="tablewrap"><table id="growthTable"></table></div>
       </details>
     </div>
 
@@ -196,7 +218,7 @@
       </svg>
       <details class="table-view">
         <summary>Show data table</summary>
-        <table id="pubsTable"></table>
+        <div class="tablewrap"><table id="pubsTable"></table></div>
       </details>
     </div>
   </section>
@@ -211,14 +233,20 @@
     <p class="nethint">Hover a bubble to trace who someone works with · drag to rearrange</p>
     <details class="table-view">
       <summary>Show data table</summary>
-      <table id="netTable"></table>
+      <div class="tablewrap"><table id="netTable"></table></div>
     </details>
   </section>
 
   <section>
     <h2 class="section">Publications</h2>
     <p class="section-sub" id="listSub"></p>
+    <div id="filterBar" class="filterbar" hidden>
+      <input type="search" id="pubFilter" placeholder="Filter by title, author, or journal…"
+             autocomplete="off" aria-label="Filter publications">
+      <span id="filterCount" class="fcount"></span>
+    </div>
     <div id="pubList"></div>
+    <p id="noMatch" class="nomatch" hidden>No publications match that filter.</p>
   </section>
 
   <footer id="footer"></footer>
@@ -268,11 +296,16 @@
   document.title = S.name + ' — Publications';
 
   // ---- KPI row ---------------------------------------------------------
+  // A PI is last author on their lab's work, so leading with "first-author" would
+  // understate them; an early-career researcher is the reverse.
+  var authorKpi = (S.kpi_authorship === 'last')
+    ? { v: S.last_author, l: 'Senior author' }
+    : { v: S.first_author, l: 'First-author' };
   var kpis = [
     { v: S.total_citations, l: 'Citations', hero: true },
     { v: S.total_papers,    l: 'Publications' },
     { v: S.h_index,         l: 'h-index' },
-    { v: S.first_author,    l: 'First-author' }
+    authorKpi
   ];
   var kroot = document.getElementById('kpis');
   kpis.forEach(function (k) {
@@ -676,9 +709,15 @@
       legend.appendChild(sp2);
     }
 
+    // State the cutoff when there is one - a graph that quietly omits 1,400 people
+    // while implying completeness is a lie by omission.
+    var scope = (NET.min_shared > 1)
+      ? NET.node_count + ' of ' + NET.total_people + ' co-authors (those with ' +
+        NET.min_shared + '+ shared papers)'
+      : NET.node_count + ' co-authors';
     document.getElementById('netSub').textContent =
-      NET.node_count + ' co-authors across ' + S.total_papers +
-      ' papers · bubble size is papers shared with you · grouped by research area';
+      scope + ' across ' + S.total_papers +
+      ' papers · bubble size is papers shared · grouped by research area';
     document.getElementById('netDesc').textContent =
       'Network of ' + NET.node_count + ' co-authors, grouped into research clusters, ' +
       'with ' + NET.clusters[0].top + ' the most frequent collaborator.';
@@ -714,6 +753,8 @@
 
   var list = document.getElementById('pubList');
   var currentYear = null;
+  var yearGroups = [];          // { header, items[] } - so filtering can hide empty years
+  var entries = [];             // { el, haystack } for the filter
   PUBS.forEach(function (p) {
     if (p.year !== currentYear) {
       currentYear = p.year;
@@ -721,6 +762,7 @@
       hy.className = 'yr';
       hy.textContent = currentYear;
       list.appendChild(hy);
+      yearGroups.push({ header: hy, items: [] });
     }
     var d = document.createElement('article');
     d.className = 'pub';
@@ -745,11 +787,53 @@
         '<p class="v">' + esc(p.venue) + badges + '</p>' +
       '</div>';
     list.appendChild(d);
+    var g = yearGroups[yearGroups.length - 1];
+    g.items.push(d);
+    entries.push({
+      el: d, group: g,
+      hay: (p.title + ' ' + p.authors.join(' ') + ' ' + p.venue + ' ' + p.year).toLowerCase()
+    });
   });
 
   document.getElementById('listSub').textContent =
     S.total_papers + ' works · ' + S.preprints + ' preprints · ' +
     S.open_access + ' open access · sorted newest first';
+
+  // ---- Filter (only worth showing once the list is too long to scan) ----
+  if (PUBS.length > 40) {
+    var bar = document.getElementById('filterBar');
+    var input = document.getElementById('pubFilter');
+    var count = document.getElementById('filterCount');
+    var none = document.getElementById('noMatch');
+    bar.hidden = false;
+    count.textContent = PUBS.length + ' shown';
+
+    var applyFilter = function () {
+      // Every space-separated term must appear somewhere in the entry, so
+      // "li 2019 proteomics" narrows instead of widening.
+      var terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+      var shown = 0;
+      entries.forEach(function (e) {
+        var ok = terms.every(function (t) { return e.hay.indexOf(t) !== -1; });
+        e.el.hidden = !ok;
+        if (ok) shown++;
+      });
+      yearGroups.forEach(function (g) {
+        g.header.hidden = !g.items.some(function (it) { return !it.hidden; });
+      });
+      count.textContent = shown === PUBS.length
+        ? PUBS.length + ' shown'
+        : shown + ' of ' + PUBS.length;
+      none.hidden = shown !== 0;
+    };
+
+    // Debounced: filtering 657 entries on every keystroke is visible jank.
+    var timer = null;
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(applyFilter, 90);
+    });
+  }
 
   // ---- Footer ----------------------------------------------------------
   var gen = new Date(S.generated_utc);
@@ -761,6 +845,13 @@
     '<p>Citation counts are as reported by OpenAlex and will differ from Google Scholar, ' +
     'which indexes more sources. ' + S.excluded_count + ' works returned under this ORCID were ' +
     'excluded as misattributions or duplicate deposits.</p>' +
+    (S.curation_note ? '<p>' + S.curation_note + '</p>' :
+     S.curated === false
+      ? '<p><strong>This page is generated automatically from the ORCID record and has ' +
+        'not been checked by hand.</strong> OpenAlex can merge researchers who share a ' +
+        'name into one profile, and shared first authorship is recorded nowhere in the ' +
+        'data, so both may be wrong here. Corrections belong in <code>config/profile.json</code>.</p>'
+      : '') +
     (S.co_first_author
       ? '<p>The first-author count includes ' + S.co_first_author + ' shared first authorship' +
         (S.co_first_author === 1 ? '' : 's') + ', badged individually above. Shared first ' +

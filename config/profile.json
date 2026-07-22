@@ -4,6 +4,9 @@
   "affiliation": "University of Wisconsin–Madison",
   "tagline": "Mass spectrometry, neuropeptidomics, and structural proteomics",
 
+  "_comment_curated": "True means a human verified the exclusions and co-first list. Lauren reviewed every entry on 2026-07-22. When false the page says outright that it is unverified.",
+  "curated": true,
+
   "_comment_exclusions": "OpenAlex merges distinct researchers who share a name into one author profile. These works are returned under the ORCID above but are NOT Lauren Fields' work, or are duplicate deposits of a work already in the list. Verified and excluded 2026-07-22.",
   "excluded_works": [
     { "id": "W2019018148", "year": 2009, "reason": "different-person", "note": "Kluyveromyces secretome (PROTEOMICS) - New England Biolabs, first author Catherine Madinger" },

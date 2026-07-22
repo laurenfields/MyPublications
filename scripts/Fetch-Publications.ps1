@@ -81,9 +81,40 @@ do {
 
 Write-Host "  OpenAlex returned $($works.Count) works." -ForegroundColor DarkGray
 
+# --- Work-type filter --------------------------------------------------------
+# Prolific profiles accumulate supplementary-material stubs, dataset deposits and
+# conference abstracts that are artifacts of indexing, not publications. Omit
+# include_types from the config to keep everything.
+if ($cfg.PSObject.Properties.Name -contains 'include_types' -and $cfg.include_types) {
+    $keepTypes = @($cfg.include_types)
+    $before = $works.Count
+    $typed = [System.Collections.Generic.List[object]]::new()
+    $byType = @{}
+    foreach ($w in $works) {
+        if ($keepTypes -contains $w.type) { $typed.Add($w) | Out-Null }
+        else { $byType[$w.type] = [int]$byType[$w.type] + 1 }
+    }
+    $works = $typed
+    if ($before -ne $works.Count) {
+        Write-Host "  kept $($works.Count) of $before by type; dropped:" -ForegroundColor DarkYellow
+        foreach ($t in ($byType.Keys | Sort-Object)) {
+            Write-Host "    $($byType[$t]) x $t" -ForegroundColor DarkYellow
+        }
+    }
+}
+
 # --- Apply the exclusion list ------------------------------------------------
 $excluded = @{}
 foreach ($e in $cfg.excluded_works) { $excluded[$e.id] = $e }
+
+# Crossref-CV.ps1 writes a machine-generated exclusion list when a CV is available to
+# arbitrate a merged ORCID. Merge it with the hand-maintained list above.
+$genPath = Join-Path (Split-Path -Parent $ConfigPath) 'exclusions.generated.json'
+if (Test-Path $genPath) {
+    $gen = [System.IO.File]::ReadAllText($genPath) | ConvertFrom-Json
+    foreach ($e in $gen.excluded) { if (-not $excluded.ContainsKey($e.id)) { $excluded[$e.id] = $e } }
+    Write-Host "  merged $(@($gen.excluded).Count) generated exclusions from $(Split-Path -Leaf $genPath)" -ForegroundColor DarkGray
+}
 
 $kept    = [System.Collections.Generic.List[object]]::new()
 $dropped = [System.Collections.Generic.List[object]]::new()
@@ -93,8 +124,14 @@ foreach ($w in $works) {
     else                                 { $kept.Add($w) | Out-Null }
 }
 
-foreach ($d in $dropped) {
-    Write-Host "  excluded $($d.id) ($($d.year), $($d.reason))" -ForegroundColor DarkYellow
+# A merged ORCID can produce well over a hundred exclusions; list them only when the
+# count is small enough to actually read.
+if ($dropped.Count -le 12) {
+    foreach ($d in $dropped) {
+        Write-Host "  excluded $($d.id) ($($d.year), $($d.reason))" -ForegroundColor DarkYellow
+    }
+} else {
+    Write-Host "  excluded $($dropped.Count) works (see config/exclusions.generated.json for each reason)" -ForegroundColor DarkYellow
 }
 
 # Warn if the config lists an exclusion OpenAlex no longer returns - it may have been
@@ -117,7 +154,17 @@ if ($cfg.PSObject.Properties.Name -contains 'co_first_author_works') {
 }
 
 $pubs = foreach ($w in $kept) {
-    $authors = @($w.authorships.author.display_name)
+    # OpenAlex omits fields rather than nulling them, and StrictMode turns a missing
+    # property into a terminating error. Small records (errata, deposits, some older
+    # papers) routinely lack primary_location, source, or open_access.
+    $authors = @(
+        foreach ($a in @($w.authorships)) {
+            if ($a.PSObject.Properties.Name -contains 'author' -and $a.author -and
+                $a.author.PSObject.Properties.Name -contains 'display_name') {
+                $a.author.display_name
+            }
+        }
+    )
 
     # Locate the profile author to record first/middle/last authorship.
     $me = $w.authorships | Where-Object { $_.author.orcid -eq $orcidUrl } | Select-Object -First 1
@@ -128,8 +175,12 @@ $pubs = foreach ($w in $kept) {
               Select-Object -First 1
     }
 
-    $venue = $w.primary_location.source.display_name
-    if (-not $venue) { $venue = 'Unpublished / no venue listed' }
+    $venue = $null
+    if ($w.PSObject.Properties.Name -contains 'primary_location' -and $w.primary_location -and
+        $w.primary_location.PSObject.Properties.Name -contains 'source' -and $w.primary_location.source) {
+        $venue = $w.primary_location.source.display_name
+    }
+    if (-not $venue) { $venue = 'No venue listed' }
 
     # Publisher feeds carry inline markup that reaches OpenAlex HTML-encoded, e.g.
     # "&lt;i&gt;Aloe Vera&lt;/i&gt;". Decode first, THEN strip tags - stripping first
@@ -159,7 +210,8 @@ $pubs = foreach ($w in $kept) {
         by_year     = @($w.counts_by_year | Sort-Object year |
                         ForEach-Object { [pscustomobject]@{ year = $_.year; count = $_.cited_by_count } })
         is_preprint = [bool]($preprints -contains $venue)
-        open_access = [bool]$w.open_access.is_oa
+        open_access = [bool]($w.PSObject.Properties.Name -contains 'open_access' -and
+                             $w.open_access -and $w.open_access.is_oa)
         type        = $w.type
         openalex_id = $w.id
     }
@@ -214,9 +266,20 @@ $summary = [pscustomobject]@{
     i10_index        = @($pubs | Where-Object { $_.citations -ge 10 }).Count
     first_author     = @($pubs | Where-Object { $_.leads }).Count
     co_first_author  = @($pubs | Where-Object { $_.is_co_first }).Count
+    # For a PI the meaningful figure is senior (last) authorship, not first - they are
+    # last author on their own lab's output. Which one the page leads with is set by
+    # kpi_authorship in the config.
+    last_author      = @($pubs | Where-Object { $_.position -eq 'last' }).Count
+    kpi_authorship   = if ($cfg.PSObject.Properties.Name -contains 'kpi_authorship') { $cfg.kpi_authorship } else { 'first' }
     preprints        = @($pubs | Where-Object { $_.is_preprint }).Count
     open_access      = @($pubs | Where-Object { $_.open_access }).Count
     excluded_count   = $dropped.Count
+    # False means the exclusion/co-first lists were never verified by a human, which
+    # the page states outright rather than implying an accuracy it does not have.
+    curated          = [bool]($cfg.PSObject.Properties.Name -contains 'curated' -and $cfg.curated)
+    # Optional prose shown in the footer, for when "curated" is too blunt a summary of
+    # how the list was actually arrived at.
+    curation_note    = if ($cfg.PSObject.Properties.Name -contains 'curation_note') { $cfg.curation_note } else { $null }
     citation_growth  = @($growth)
     papers_by_year   = @($byYear)
 }

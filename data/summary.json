@@ -3,7 +3,7 @@
     "orcid":  "0000-0001-8155-642X",
     "affiliation":  "University of Wisconsin–Madison",
     "tagline":  "Mass spectrometry, neuropeptidomics, and structural proteomics",
-    "generated_utc":  "2026-07-22T17:14:29Z",
+    "generated_utc":  "2026-07-22T18:23:02Z",
     "current_year":  2026,
     "total_papers":  23,
     "total_citations":  259,
@@ -11,9 +11,13 @@
     "i10_index":  10,
     "first_author":  14,
     "co_first_author":  3,
+    "last_author":  0,
+    "kpi_authorship":  "first",
     "preprints":  4,
     "open_access":  22,
     "excluded_count":  7,
+    "curated":  true,
+    "curation_note":  null,
     "citation_growth":  [
                             {
                                 "year":  2022,

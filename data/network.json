@@ -1,9 +1,12 @@
 {
-    "generated_utc":  "2026-07-22T17:33:07Z",
+    "generated_utc":  "2026-07-22T18:23:04Z",
     "center":  "Lauren Fields",
     "advisor":  "Lingjun Li",
     "node_count":  57,
     "link_count":  220,
+    "min_shared":  1,
+    "total_people":  57,
+    "hidden_people":  0,
     "max_colored":  4,
     "clusters":  [
                      {
