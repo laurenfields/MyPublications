@@ -1,6 +1,8 @@
 # TODO — Publications page with citation charts, published live
 
-**Started:** 2026-07-21 · **Rebuilt:** 2026-07-22 · **Status:** in progress
+**Started:** 2026-07-21 · **Rebuilt:** 2026-07-22 · **Status:** done 2026-07-22
+
+**Live at <https://laurenfields.github.io/MyPublications/>**
 
 ## Goal
 
@@ -35,8 +37,26 @@ not.
 - [x] Design the page (layout, accent color, featured numbers, charts)
 - [x] Rebuild against the correct ORCID (2026-07-22)
 - [x] Build `index.html`, review in browser, refine
-- [ ] Push, turn on GitHub Pages, confirm the live URL
-- [ ] Mark this spec done and commit
+- [x] Push, turn on GitHub Pages, confirm the live URL
+- [x] Mark this spec done and commit
+
+## Outcome
+
+Live at <https://laurenfields.github.io/MyPublications/>, verified serving over
+HTTPS: 23 papers, 259 citations, h-index 10, 14 first-author. One network request
+(the page itself) — no CDN, no fonts, no runtime API calls.
+
+**Three corrections came from Lauren reviewing output, not from the pipeline**, and
+none were derivable from any API:
+
+1. The 2015 Antarctic-fish papers are a different Lauren Fields (name collision).
+2. The bioRxiv EndoGenius is a *sequel*, not a preprint of the 2024 journal paper.
+3. Three papers carry shared first authorship — MotifQuest, the Methods in Molecular
+   Biology chapter, and cNPDB. Author order does not reveal this; cNPDB has Lauren
+   third of six.
+
+All three live in `config/profile.json` so they persist across re-runs rather than
+being re-litigated. Any future co-first paper needs a one-line entry there.
 
 ## Notes and decisions — current build (2026-07-22)
 
