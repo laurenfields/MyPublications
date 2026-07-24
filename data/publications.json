@@ -635,6 +635,50 @@
         "openalex_id":  "https://openalex.org/W4319301719"
     },
     {
+        "title":  "Proteome-wide Profiling of Asymmetric Dimethylated Arginine in Human Breast Tumors",
+        "year":  2023,
+        "date":  "2023-07-18",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.3c00154",
+        "url":  "https://doi.org/10.1021/jasms.3c00154",
+        "authors":  [
+                        "M Ma",
+                        "Fabao Liu",
+                        "Hannah N. Miles",
+                        "Eui‐Jun Kim",
+                        "Lauren Fields",
+                        "Wei Xu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  7,
+        "position":  "middle",
+        "is_co_first":  false,
+        "leads":  false,
+        "citations":  11,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  4
+                        },
+                        {
+                            "year":  2025,
+                            "count":  4
+                        },
+                        {
+                            "year":  2026,
+                            "count":  1
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4384662136"
+    },
+    {
         "title":  "HyPep: An Open-Source Software for Identification and Discovery of Neuropeptides Using Sequence Homology Search",
         "year":  2023,
         "date":  "2023-01-25",
@@ -671,46 +715,6 @@
         "open_access":  true,
         "type":  "article",
         "openalex_id":  "https://openalex.org/W4318021605"
-    },
-    {
-        "title":  "Proteome-wide Profiling of Asymmetric Dimethylated Arginine in Human Breast Tumors",
-        "year":  2023,
-        "date":  "2023-07-18",
-        "venue":  "Journal of the American Society for Mass Spectrometry",
-        "doi":  "https://doi.org/10.1021/jasms.3c00154",
-        "url":  "https://doi.org/10.1021/jasms.3c00154",
-        "authors":  [
-                        "M Ma",
-                        "Fabao Liu",
-                        "Hannah N. Miles",
-                        "Eui‐Jun Kim",
-                        "Lauren Fields",
-                        "Wei Xu",
-                        "Lingjun Li"
-                    ],
-        "author_count":  7,
-        "position":  "middle",
-        "is_co_first":  false,
-        "leads":  false,
-        "citations":  10,
-        "by_year":  [
-                        {
-                            "year":  2023,
-                            "count":  2
-                        },
-                        {
-                            "year":  2024,
-                            "count":  4
-                        },
-                        {
-                            "year":  2025,
-                            "count":  4
-                        }
-                    ],
-        "is_preprint":  false,
-        "open_access":  true,
-        "type":  "article",
-        "openalex_id":  "https://openalex.org/W4384662136"
     },
     {
         "title":  "Recent advances in characterization of citrullination and its implication in human disease research: From method development to network integration",

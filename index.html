@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lauren Fields - Publications</title>
-<meta name="description" content="23 publications and 259 citations by Lauren Fields, University of Wisconsin–Madison.">
+<meta name="description" content="23 publications and 260 citations by Lauren Fields, University of Wisconsin–Madison.">
 <style>
   /* Palette roles. Dark values are stepped for the dark surface, not flipped. */
   :root {
@@ -61,7 +61,12 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 72px; }
+  /* .pagehead is a full-bleed band; .pagehead-inner re-centres to the content column.
+     With no theme the band is transparent, so this is identical to a plain header. A
+     branded theme fills it with an accent colour and flips the text to light. The class
+     is deliberately NOT "hero" - that name is already the KPI-card modifier .kpi.hero. */
+  .pagehead-inner { max-width: 960px; margin: 0 auto; padding: 48px 24px 40px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px 72px; }
   /* Titles in this field carry unbreakable tokens - peptide sequences like
      VPNDWSKFQGSWamide, reagent names, "Electron-Transfer/Higher-Energy" - that
      overflow narrow screens because there is nowhere to wrap. */
@@ -71,7 +76,7 @@
   a:hover { text-decoration: none; }
 
   /* ---- Header ---- */
-  header { margin-bottom: 40px; }
+  header { margin-bottom: 0; }
   h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0 0 8px; letter-spacing: -0.02em; }
   .affil { color: var(--text-secondary); margin: 0 0 4px; font-size: 17px; }
   .tagline { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
@@ -182,18 +187,22 @@
            font-size: 13px; color: var(--muted); }
   footer p { margin: 0 0 6px; }
 </style>
+
 </head>
 <body>
+<div class="pagehead">
+  <div class="pagehead-inner">
+    <header>
+      <h1 id="name"></h1>
+      <p class="affil" id="affil"></p>
+      <p class="tagline" id="tagline"></p>
+      <a class="orcid" id="orcidLink" href="#" target="_blank" rel="noopener">
+        <span class="dot"></span><span id="orcidText"></span>
+      </a>
+    </header>
+  </div>
+</div>
 <div class="wrap">
-
-  <header>
-    <h1 id="name"></h1>
-    <p class="affil" id="affil"></p>
-    <p class="tagline" id="tagline"></p>
-    <a class="orcid" id="orcidLink" href="#" target="_blank" rel="noopener">
-      <span class="dot"></span><span id="orcidText"></span>
-    </a>
-  </header>
 
   <section class="kpis" id="kpis" aria-label="Summary metrics"></section>
 
@@ -891,6 +900,50 @@
         "openalex_id":  "https://openalex.org/W4319301719"
     },
     {
+        "title":  "Proteome-wide Profiling of Asymmetric Dimethylated Arginine in Human Breast Tumors",
+        "year":  2023,
+        "date":  "2023-07-18",
+        "venue":  "Journal of the American Society for Mass Spectrometry",
+        "doi":  "https://doi.org/10.1021/jasms.3c00154",
+        "url":  "https://doi.org/10.1021/jasms.3c00154",
+        "authors":  [
+                        "M Ma",
+                        "Fabao Liu",
+                        "Hannah N. Miles",
+                        "Eui‐Jun Kim",
+                        "Lauren Fields",
+                        "Wei Xu",
+                        "Lingjun Li"
+                    ],
+        "author_count":  7,
+        "position":  "middle",
+        "is_co_first":  false,
+        "leads":  false,
+        "citations":  11,
+        "by_year":  [
+                        {
+                            "year":  2023,
+                            "count":  2
+                        },
+                        {
+                            "year":  2024,
+                            "count":  4
+                        },
+                        {
+                            "year":  2025,
+                            "count":  4
+                        },
+                        {
+                            "year":  2026,
+                            "count":  1
+                        }
+                    ],
+        "is_preprint":  false,
+        "open_access":  true,
+        "type":  "article",
+        "openalex_id":  "https://openalex.org/W4384662136"
+    },
+    {
         "title":  "HyPep: An Open-Source Software for Identification and Discovery of Neuropeptides Using Sequence Homology Search",
         "year":  2023,
         "date":  "2023-01-25",
@@ -927,46 +980,6 @@
         "open_access":  true,
         "type":  "article",
         "openalex_id":  "https://openalex.org/W4318021605"
-    },
-    {
-        "title":  "Proteome-wide Profiling of Asymmetric Dimethylated Arginine in Human Breast Tumors",
-        "year":  2023,
-        "date":  "2023-07-18",
-        "venue":  "Journal of the American Society for Mass Spectrometry",
-        "doi":  "https://doi.org/10.1021/jasms.3c00154",
-        "url":  "https://doi.org/10.1021/jasms.3c00154",
-        "authors":  [
-                        "M Ma",
-                        "Fabao Liu",
-                        "Hannah N. Miles",
-                        "Eui‐Jun Kim",
-                        "Lauren Fields",
-                        "Wei Xu",
-                        "Lingjun Li"
-                    ],
-        "author_count":  7,
-        "position":  "middle",
-        "is_co_first":  false,
-        "leads":  false,
-        "citations":  10,
-        "by_year":  [
-                        {
-                            "year":  2023,
-                            "count":  2
-                        },
-                        {
-                            "year":  2024,
-                            "count":  4
-                        },
-                        {
-                            "year":  2025,
-                            "count":  4
-                        }
-                    ],
-        "is_preprint":  false,
-        "open_access":  true,
-        "type":  "article",
-        "openalex_id":  "https://openalex.org/W4384662136"
     },
     {
         "title":  "Recent advances in characterization of citrullination and its implication in human disease research: From method development to network integration",
@@ -1076,10 +1089,10 @@
     "orcid":  "0000-0001-8155-642X",
     "affiliation":  "University of Wisconsin–Madison",
     "tagline":  "Mass spectrometry, neuropeptidomics, and structural proteomics",
-    "generated_utc":  "2026-07-22T18:23:02Z",
+    "generated_utc":  "2026-07-24T16:38:19Z",
     "current_year":  2026,
     "total_papers":  23,
-    "total_citations":  259,
+    "total_citations":  260,
     "h_index":  10,
     "i10_index":  10,
     "first_author":  14,
@@ -1091,6 +1104,7 @@
     "excluded_count":  7,
     "curated":  true,
     "curation_note":  null,
+    "theme":  null,
     "citation_growth":  [
                             {
                                 "year":  2022,
@@ -1114,8 +1128,8 @@
                             },
                             {
                                 "year":  2026,
-                                "received":  72,
-                                "cumulative":  259
+                                "received":  73,
+                                "cumulative":  260
                             }
                         ],
     "papers_by_year":  [
@@ -1137,7 +1151,7 @@
                            {
                                "year":  2023,
                                "papers":  6,
-                               "citations":  167
+                               "citations":  168
                            },
                            {
                                "year":  2024,
@@ -3200,9 +3214,13 @@
     var isDark = matchMedia('(prefers-color-scheme: dark)').matches &&
                  document.documentElement.getAttribute('data-theme') !== 'light' ||
                  document.documentElement.getAttribute('data-theme') === 'dark';
-    var SLOTS = isDark
+    // A branded theme supplies its own slot colours; both variants stay within the
+    // documented, CVD-validated categorical hues (index 0 is the neutral "Other").
+    var themeSlots = (S.theme && S.theme.network_slots_light)
+      ? (isDark ? S.theme.network_slots_dark : S.theme.network_slots_light) : null;
+    var SLOTS = themeSlots || (isDark
       ? ['#898781', '#3987e5', '#008300', '#d55181', '#c98500']
-      : ['#898781', '#2a78d6', '#008300', '#e87ba4', '#eda100'];
+      : ['#898781', '#2a78d6', '#008300', '#e87ba4', '#eda100']);
     function slotColor(s) { return SLOTS[s] || SLOTS[0]; }
 
     var maxPapers = Math.max.apply(null, NET.nodes.map(function (n) { return n.papers; }));
